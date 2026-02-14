@@ -1,0 +1,26 @@
+# ============================================================
+# Flight Monitor Bot - Dependencias Python
+# ============================================================
+# Instalar con: pip install -r requirements.txt
+# Luego ejecutar: playwright install chromium
+# ============================================================
+
+# --- Web Scraping ---
+playwright>=1.49.0              # Automatización de navegador (Chromium)
+playwright-stealth>=1.0.6       # Anti-detección de bots (oculta Playwright)
+
+# --- Base de Datos ---
+sqlalchemy>=2.0.25              # ORM para SQLite (modelos, queries)
+
+# --- Notificaciones ---
+python-telegram-bot>=20.7       # Bot de Telegram (alertas)
+
+# --- Configuración ---
+python-dotenv>=1.0.0            # Carga de variables desde .env
+
+# --- Utilidades ---
+aiohttp>=3.11.0                 # HTTP async (para APIs)
+
+# --- Testing ---
+pytest>=7.0.0,<8.0.0            # Framework de testing
+pytest-asyncio>=0.23.4          # Soporte async para pytest

@@ -1,0 +1,61 @@
+# ============================================================
+# Flight Monitor Bot - .gitignore
+# ============================================================
+
+# === Entorno virtual ===
+venv/
+.venv/
+env/
+
+# === Variables de entorno (contiene tokens sensibles) ===
+.env
+
+# === Base de datos ===
+data/flights.db
+data/*.db
+
+# === Logs ===
+data/logs/
+data/flybondi_logs/
+*.log
+
+# === Archivos temporales ===
+nul
+test_output.txt
+test_results.txt
+
+# === Gemini / Agent ===
+.gemini/
+
+# === Cache ===
+data/cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Playwright ===
+# Los browsers de Playwright se instalan globalmente, no commitear
+playwright-browsers/
+
+# === Screenshots de debugging ===
+screenshots/
+*.png
+*.jpg
+
+# === Pytest ===
+.pytest_cache/
+htmlcov/
+.coverage
