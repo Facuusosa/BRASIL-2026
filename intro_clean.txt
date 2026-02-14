@@ -1,0 +1,62 @@
+  1| ======================================================================
+  2| INTROSPECCIÓN GraphQL — DESCUBRIENDO TODO LO QUE LA API PUEDE HACER
+  3| ======================================================================
+  4| 
+  5| [1] Ejecutando introspección del schema GraphQL...
+  6|   ERROR: [
+  7|   {
+  8|     "timeThrown": "2026-02-14T04:51:43.757Z",
+  9|     "name": "ValidationError",
+ 10|     "message": "GraphQL introspection is not allowed by Apollo Server, but the query contained __schema or __type. To enable introspection, pass introspection: true to ApolloServer in production"
+ 11|   }
+ 12| ]
+ 13|   La introspección puede estar deshabilitada. Intentando método alternativo...
+ 14|   No se pudo obtener el schema.
+ 15| 
+ 16| ======================================================================
+ 17| BUSCANDO ENDPOINTS OCULTOS
+ 18| ======================================================================
+ 19|   deals: no existe
+ 20|   offers: no existe
+ 21|   flashSales: no existe
+ 22|   promotions: no existe
+ 23|   flexibleDates: no existe
+ 24|   cheapestDates: no existe
+ 25|   priceCalendar: no existe
+ 26|   bundles: no existe
+ 27|   packages: no existe
+ 28|   clubPrices: no existe
+ 29|   membership: no existe
+ 30|   cheapestDestinations: no existe
+ 31|   explore: no existe
+ 32| 
+ 33| ======================================================================
+ 34| BUSCANDO FARE TYPES OCULTOS
+ 35| ======================================================================
+ 36|   Vuelos encontrados: 5
+ 37| 
+ 38|   VUELO DETALLADO: FO5950 AEP->FLN 2026-03-08T00:40:00.000-03:00
+ 39|   Equipment: 738
+ 40| 
+ 41|   FARE 1:
+ 42|     fareRef: eyJjYXJyaWVyIjoiRk8iLCJmbGlnaHRObyI6NTk1MCwib3JpZ2luIjoiQUVQIiwiZGVzdGluYXRpb24iOiJGTE4iLCJkZXBhcnR1cmVEYXRlIjoiMjAyNi0wMy0wOCIsImZhcmVDb2RlIjoiQiIsImZhcmVUeXBlIjoiU1RBTkRBUkQiLCJmYXJlQmFzaXMiOiJCSU5UTFMiLCJwcm9tb0NvZGUiOiJDQVJOQVZBTCJ9
+ 43|     type: STANDARD
+ 44|     class: B
+ 45|     basis: BINTLS
+ 46|     availability: 5
+ 47|     passengerType: ADULT
+ 48|     afterTax: $164,525.56
+ 49|     beforeTax: $41,182.16
+ 50|     baseBeforeTax: $46,376.31
+ 51|     promotionAmount: $7,115.98
+ 52|     TAXES (6):
+ 53|       QO (TAX): $14,150.00 - AIRLINE FEE
+ 54|       S7 (TAX): $1,981.00 - AIRLINE FEE
+ 55|       TQ (TAX): $11,320.00 - AIRLINE FEE
+ 56|       XR (TAX): $80,655.00 - AIRLINE FEE
+ 57|       AR (TAX): $2,882.75 - TICKET TAX
+ 58|       Q1 (TAX): $12,354.65 - IMPUESTO FISCAL AFIP
+ 59| 
+ 60| ======================================================================
+ 61| FIN
+ 62| ======================================================================

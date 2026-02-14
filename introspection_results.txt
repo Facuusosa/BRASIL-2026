@@ -1,0 +1,62 @@
+======================================================================
+INTROSPECCIÓN GraphQL — DESCUBRIENDO TODO LO QUE LA API PUEDE HACER
+======================================================================
+
+[1] Ejecutando introspección del schema GraphQL...
+  ERROR: [
+  {
+    "timeThrown": "2026-02-14T04:51:43.757Z",
+    "name": "ValidationError",
+    "message": "GraphQL introspection is not allowed by Apollo Server, but the query contained __schema or __type. To enable introspection, pass introspection: true to ApolloServer in production"
+  }
+]
+  La introspección puede estar deshabilitada. Intentando método alternativo...
+  No se pudo obtener el schema.
+
+======================================================================
+BUSCANDO ENDPOINTS OCULTOS
+======================================================================
+  deals: no existe
+  offers: no existe
+  flashSales: no existe
+  promotions: no existe
+  flexibleDates: no existe
+  cheapestDates: no existe
+  priceCalendar: no existe
+  bundles: no existe
+  packages: no existe
+  clubPrices: no existe
+  membership: no existe
+  cheapestDestinations: no existe
+  explore: no existe
+
+======================================================================
+BUSCANDO FARE TYPES OCULTOS
+======================================================================
+  Vuelos encontrados: 5
+
+  VUELO DETALLADO: FO5950 AEP->FLN 2026-03-08T00:40:00.000-03:00
+  Equipment: 738
+
+  FARE 1:
+    fareRef: eyJjYXJyaWVyIjoiRk8iLCJmbGlnaHRObyI6NTk1MCwib3JpZ2luIjoiQUVQIiwiZGVzdGluYXRpb24iOiJGTE4iLCJkZXBhcnR1cmVEYXRlIjoiMjAyNi0wMy0wOCIsImZhcmVDb2RlIjoiQiIsImZhcmVUeXBlIjoiU1RBTkRBUkQiLCJmYXJlQmFzaXMiOiJCSU5UTFMiLCJwcm9tb0NvZGUiOiJDQVJOQVZBTCJ9
+    type: STANDARD
+    class: B
+    basis: BINTLS
+    availability: 5
+    passengerType: ADULT
+    afterTax: $164,525.56
+    beforeTax: $41,182.16
+    baseBeforeTax: $46,376.31
+    promotionAmount: $7,115.98
+    TAXES (6):
+      QO (TAX): $14,150.00 - AIRLINE FEE
+      S7 (TAX): $1,981.00 - AIRLINE FEE
+      TQ (TAX): $11,320.00 - AIRLINE FEE
+      XR (TAX): $80,655.00 - AIRLINE FEE
+      AR (TAX): $2,882.75 - TICKET TAX
+      Q1 (TAX): $12,354.65 - IMPUESTO FISCAL AFIP
+
+======================================================================
+FIN
+======================================================================

@@ -1,0 +1,30 @@
+============================================================
+STEP 1: Searching flights to establish session
+============================================================
+  Flights found: 5
+  Viewer ID: fixed-viewer
+  Cheapest outbound: FO5950 AEP->FLN $178,630/pp
+    id: RmxpZ2h0SW5mbzp7ImZsaWdodE5vIjo1OTUwLCJkZXBhcnR1cmVEYXRlIjoiMjAyNi0wMy0wOFQwMDo0MDowMC4wMDAtMDM6MDAiLCJpZCI6ImV5SnZjbWxuYVc0aU9pSkJSVkFpTENKa1pYTjBhVzVoZEdsdmJpSTZJa1pNVGlJc0ltTmhjbkpwWlhJaU9pSkdUeUlzSW1ac2FXZG9kRTV2SWpvaU5UazFNQ0lzSW1SbGNHRnlkSFZ5WlVSaGRHVWlPaUl5TURJMkxUQXpMVEE0VkRBd09qUXdPakF3TGpBd01DMHdNem93TUNJc0luTnpja0YyWVdsc1lXSnBiR2wwZVNJNmV5SlFSVlJESWpvMGZTd2lhVzUwWlhKdVlYUnBiMjVoYkNJNmRISjFaWDA9Iiwic2ZJZCI6ImV5SnZjbWxuYVc0aU9pSkJSVkFpTENKa1pYTjBhVzVoZEdsdmJpSTZJa1pNVGlJc0ltTmhjbkpwWlhJaU9pSkdUeUlzSW1ac2FXZG9kRTV2SWpvaU5UazFNQ0lzSW1SbGNHRnlkSFZ5WlVSaGRHVWlPaUl5TURJMkxUQXpMVEE0VkRBd09qUXdPakF3TGpBd01DMHdNem93TUNJc0luTnpja0YyWVdsc1lXSnBiR2wwZVNJNmV5SlFSVlJESWpvMGZTd2lhVzUwWlhKdVlYUnBiMjVoYkNJNmRISjFaWDA9Iiwib3JpZ2luIjoiQUVQIiwiZGVzdGluYXRpb24iOiJGTE4iLCJzdG9wcyI6MH0=
+    lfId: 1
+    sfId: eyJvcmlnaW4iOiJBRVAiLCJkZXN0aW5hdGlvbiI6IkZMTiIsImNhcnJpZXIiOiJGTyIsImZsaWdodE5vIjoiNTk1MCIsImRlcGFydHVyZURhdGUiOiIyMDI2LTAzLTA4VDAwOjQwOjAwLjAwMC0wMzowMCIsInNzckF2YWlsYWJpbGl0eSI6eyJQRVRDIjo0fSwiaW50ZXJuYXRpb25hbCI6dHJ1ZX0=
+    fareRef: eyJjYXJyaWVyIjoiRk8iLCJmbGlnaHRObyI6NTk1MCwib3JpZ2luIjoiQUVQIiwiZGVzdGluYXRpb24iOiJGTE4iLCJkZXBhcnR1cmVEYXRlIjoiMjAyNi0wMy0wOCIsImZhcmVDb2RlIjoiQiIsImZhcmVUeXBlIjoiU1RBTkRBUkQiLCJmYXJlQmFzaXMiOiJCSU5UTFMifQ==
+  Cheapest inbound: FO5953 FLN->EZE $199,683/pp
+    id: RmxpZ2h0SW5mbzp7ImZsaWdodE5vIjo1OTUzLCJkZXBhcnR1cmVEYXRlIjoiMjAyNi0wMy0xN1QyMDo1NTowMC4wMDAtMDM6MDAiLCJpZCI6ImV5SnZjbWxuYVc0aU9pSkdURTRpTENKa1pYTjBhVzVoZEdsdmJpSTZJa1ZhUlNJc0ltTmhjbkpwWlhJaU9pSkdUeUlzSW1ac2FXZG9kRTV2SWpvaU5UazFNeUlzSW1SbGNHRnlkSFZ5WlVSaGRHVWlPaUl5TURJMkxUQXpMVEUzVkRJd09qVTFPakF3TGpBd01DMHdNem93TUNJc0luTnpja0YyWVdsc1lXSnBiR2wwZVNJNmV5SlFSVlJESWpvMGZTd2lhVzUwWlhKdVlYUnBiMjVoYkNJNmRISjFaWDA9Iiwic2ZJZCI6ImV5SnZjbWxuYVc0aU9pSkdURTRpTENKa1pYTjBhVzVoZEdsdmJpSTZJa1ZhUlNJc0ltTmhjbkpwWlhJaU9pSkdUeUlzSW1ac2FXZG9kRTV2SWpvaU5UazFNeUlzSW1SbGNHRnlkSFZ5WlVSaGRHVWlPaUl5TURJMkxUQXpMVEUzVkRJd09qVTFPakF3TGpBd01DMHdNem93TUNJc0luTnpja0YyWVdsc1lXSnBiR2wwZVNJNmV5SlFSVlJESWpvMGZTd2lhVzUwWlhKdVlYUnBiMjVoYkNJNmRISjFaWDA9Iiwib3JpZ2luIjoiRkxOIiwiZGVzdGluYXRpb24iOiJFWkUiLCJzdG9wcyI6MH0=
+    lfId: 1
+    sfId: eyJvcmlnaW4iOiJGTE4iLCJkZXN0aW5hdGlvbiI6IkVaRSIsImNhcnJpZXIiOiJGTyIsImZsaWdodE5vIjoiNTk1MyIsImRlcGFydHVyZURhdGUiOiIyMDI2LTAzLTE3VDIwOjU1OjAwLjAwMC0wMzowMCIsInNzckF2YWlsYWJpbGl0eSI6eyJQRVRDIjo0fSwiaW50ZXJuYXRpb25hbCI6dHJ1ZX0=
+    fareRef: eyJjYXJyaWVyIjoiRk8iLCJmbGlnaHRObyI6NTk1Mywib3JpZ2luIjoiRkxOIiwiZGVzdGluYXRpb24iOiJFWkUiLCJkZXBhcnR1cmVEYXRlIjoiMjAyNi0wMy0xNyIsImZhcmVDb2RlIjoiTiIsImZhcmVUeXBlIjoiU1RBTkRBUkQiLCJmYXJlQmFzaXMiOiJOT1dMUyJ9
+
+============================================================
+STEP 2: Try to select flights via session
+============================================================
+  Selecting flights: out=eyJvcmlnaW4iOiJBRVAiLCJkZXN0aW5hdGlvbiI6IkZMTiIsImNhcnJpZXIiOiJGTyIsImZsaWdodE5vIjoiNTk1MCIsImRlcGFydHVyZURhdGUiOiIyMDI2LTAzLTA4VDAwOjQwOjAwLjAwMC0wMzowMCIsInNzckF2YWlsYWJpbGl0eSI6eyJQRVRDIjo0fSwiaW50ZXJuYXRpb25hbCI6dHJ1ZX0=, in=eyJvcmlnaW4iOiJGTE4iLCJkZXN0aW5hdGlvbiI6IkVaRSIsImNhcnJpZXIiOiJGTyIsImZsaWdodE5vIjoiNTk1MyIsImRlcGFydHVyZURhdGUiOiIyMDI2LTAzLTE3VDIwOjU1OjAwLjAwMC0wMzowMCIsInNzckF2YWlsYWJpbGl0eSI6eyJQRVRDIjo0fSwiaW50ZXJuYXRpb25hbCI6dHJ1ZX0=
+  Session error: {
+  "errors": [
+    {
+      "timeThrown": "2026-02-14T05:22:09.143Z",
+      "name": "UserInputError",
+      "message": "Variable \"$input\" got invalid value { clientMutationId: \"1\", outbound: \"eyJvcmlnaW4iOiJBRVAiLCJkZXN0aW5hdGlvbiI6IkZMTiIsImNhcnJpZXIiOiJGTyIsImZsaWdodE5vIjoiNTk1MCIsImRlcGFydHVyZURhdGUiOiIyMDI2LTAzLTA4VDAwOjQwOjAwLjAwMC0wMzowMCIsInNzckF2YWlsYWJpbGl0eSI6eyJQRVRDIjo0fSwiaW50ZXJuYXRpb25hbCI6dHJ1ZX0=\", inbound: \"eyJvcmlnaW4iOiJGTE4iLCJkZXN0aW5hdGlvbiI6IkVaRSIsImNhcnJpZXIiOiJG
+
+============================================================
+DONE
+============================================================

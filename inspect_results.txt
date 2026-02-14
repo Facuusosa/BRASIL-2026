@@ -1,0 +1,64 @@
+============================================================
+TEST 1: PROBANDO CODIGOS PROMO
+============================================================
+
+Precio BASE (sin promo):
+  Vuelo FO5950: $178,630/pp | promotionAmount: 0
+
+Probando 29 códigos promo...
+  FLYBONDI             -> $   178,630/pp  promo: $       0  diff: $       0
+  FO20                 -> $   178,630/pp  promo: $       0  diff: $       0
+  FO30                 -> $   178,630/pp  promo: $       0  diff: $       0
+  CLUB20               -> $   178,630/pp  promo: $       0  diff: $       0
+  VERANO               -> $   178,630/pp  promo: $       0  diff: $       0
+  VERANO2026           -> $   178,630/pp  promo: $       0  diff: $       0
+  MARZO                -> $   178,630/pp  promo: $       0  diff: $       0
+  BRASIL               -> $   178,630/pp  promo: $       0  diff: $       0
+  PROMO                -> $   178,630/pp  promo: $       0  diff: $       0
+  DESCUENTO            -> $   178,630/pp  promo: $       0  diff: $       0
+  BIENVENIDO           -> $   178,630/pp  promo: $       0  diff: $       0
+  WELCOME              -> $   178,630/pp  promo: $       0  diff: $       0
+  CARNAVAL             -> $   164,526/pp  promo: $   7,116  diff: $  14,105 *** PROMO ACTIVA: $7,116 descuento ***
+  CARNAVAL2026         -> $   178,630/pp  promo: $       0  diff: $       0
+  SUMMER               -> $   178,630/pp  promo: $       0  diff: $       0
+  AMIGO                -> $   178,630/pp  promo: $       0  diff: $       0
+  2X1                  -> $   178,630/pp  promo: $       0  diff: $       0
+  FLYCLUB              -> $   178,630/pp  promo: $       0  diff: $       0
+  SALE                 -> $   178,630/pp  promo: $       0  diff: $       0
+  HOTDEAL              -> $   178,630/pp  promo: $       0  diff: $       0
+  FLASH                -> $   178,630/pp  promo: $       0  diff: $       0
+  FIRSTFLIGHT          -> $   178,630/pp  promo: $       0  diff: $       0
+  PRIMERVIAJE          -> $   178,630/pp  promo: $       0  diff: $       0
+  SAVE20               -> $   178,630/pp  promo: $       0  diff: $       0
+  OFF20                -> $   178,630/pp  promo: $       0  diff: $       0
+  OFF30                -> $   178,630/pp  promo: $       0  diff: $       0
+  OFF40                -> $   178,630/pp  promo: $       0  diff: $       0
+  VUELA                -> $   178,630/pp  promo: $       0  diff: $       0
+  VOLAR                -> $   178,630/pp  promo: $       0  diff: $       0
+
+============================================================
+TEST 2: COMPARAR PRECIO ARS vs USD
+============================================================
+  ARS: afterTax=  178,630.45  beforeTax=   51,477.70  (impuestos:   127,152.75)
+  USD: afterTax=      115.33  beforeTax=       36.38  (impuestos:        78.95)
+  BRL: afterTax=      595.92  beforeTax=      187.99  (impuestos:       407.93)
+
+============================================================
+TEST 3: CAMBIAR MARKET ORIGIN (ar vs br vs py)
+============================================================
+  Market 'ar': USD     115.33/pp
+  Market 'br': USD     595.92/pp
+  Market 'py': USD 756,609.00/pp
+  Market 'uy': Error - 'NoneType' object is not subscriptable
+  Market 'us': Error - 'NoneType' object is not subscriptable
+
+============================================================
+TEST 4: SOLO IDA vs ROUND-TRIP (¿es más barato separado?)
+============================================================
+  Solo IDA 08/03: $178,630/pp
+  Solo VUELTA 17/03: $190,897/pp
+  Round-trip cheapest (de log): ida $179,262/pp + vuelta $178,163/pp = $357,425/pp
+
+============================================================
+ANALISIS COMPLETO
+============================================================

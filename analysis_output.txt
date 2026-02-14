@@ -1,0 +1,56 @@
+=== ANALISIS POR CLASE DE TARIFA ===
+  Clase B: $179,262 - $179,262 (avg $179,262) | Asientos: 3-9 | 40 vuelos
+  Clase J: $208,715 - $208,715 (avg $208,715) | Asientos: 2-7 | 30 vuelos
+  Clase K: $222,741 - $222,741 (avg $222,741) | Asientos: 3-3 | 10 vuelos
+  Clase L: $236,768 - $236,768 (avg $236,768) | Asientos: 9-9 | 10 vuelos
+  Clase M: $178,163 - $178,163 (avg $178,163) | Asientos: 9-9 | 30 vuelos
+  Clase N: $200,302 - $200,302 (avg $200,302) | Asientos: 4-9 | 30 vuelos
+  Clase P: $252,691 - $252,691 (avg $252,691) | Asientos: 2-9 | 20 vuelos
+  Clase Q: $282,923 - $282,923 (avg $282,923) | Asientos: 4-4 | 10 vuelos
+  Clase V: $313,193 - $393,937 (avg $353,565) | Asientos: 3-9 | 20 vuelos
+
+=== VUELOS MAS BARATOS (afterTax por persona) ===
+  VUELTA 2026-03-17  FO5951   FLN->AEP  04:25-06:30 Clase:M $   178,163/pp (base $ 109,794 + tax $  68,369 = 38%) Asientos:9
+  VUELTA 2026-03-17  FO5955   FLN->EZE  11:00-13:05 Clase:M $   178,163/pp (base $ 109,794 + tax $  68,369 = 38%) Asientos:9
+  VUELTA 2026-03-18  FO5951   FLN->AEP  04:25-06:30 Clase:M $   178,163/pp (base $ 109,794 + tax $  68,369 = 38%) Asientos:9
+  IDA    2026-03-08  FO5950   AEP->FLN  00:40-02:35 Clase:B $   179,262/pp (base $  51,660 + tax $ 127,602 = 71%) Asientos:3
+  IDA    2026-03-08  FO5952   EZE->FLN  18:05-20:00 Clase:B $   179,262/pp (base $  51,660 + tax $ 127,602 = 71%) Asientos:9
+  IDA    2026-03-10  FO5952   EZE->FLN  18:05-20:00 Clase:B $   179,262/pp (base $  51,660 + tax $ 127,602 = 71%) Asientos:5
+  IDA    2026-03-11  FO5952   EZE->FLN  18:05-20:00 Clase:B $   179,262/pp (base $  51,660 + tax $ 127,602 = 71%) Asientos:9
+  VUELTA 2026-03-16  FO5955   FLN->EZE  11:00-13:05 Clase:N $   200,302/pp (base $ 125,954 + tax $  74,348 = 37%) Asientos:4
+  VUELTA 2026-03-16  FO5953   FLN->EZE  20:55-23:00 Clase:N $   200,302/pp (base $ 125,954 + tax $  74,348 = 37%) Asientos:9
+  VUELTA 2026-03-17  FO5953   FLN->EZE  20:55-23:00 Clase:N $   200,302/pp (base $ 125,954 + tax $  74,348 = 37%) Asientos:9
+  IDA    2026-03-09  FO5952   EZE->FLN  18:05-20:00 Clase:J $   208,715/pp (base $  73,158 + tax $ 135,557 = 65%) Asientos:7
+  IDA    2026-03-10  FO5950   AEP->FLN  00:40-02:35 Clase:J $   208,715/pp (base $  73,158 + tax $ 135,557 = 65%) Asientos:6
+  IDA    2026-03-11  FO5950   AEP->FLN  00:40-02:35 Clase:J $   208,715/pp (base $  73,158 + tax $ 135,557 = 65%) Asientos:2
+  IDA    2026-03-10  FO5954   EZE->FLN  08:05-10:00 Clase:K $   222,741/pp (base $  83,397 + tax $ 139,345 = 63%) Asientos:3
+  IDA    2026-03-09  FO5950   AEP->FLN  00:40-02:35 Clase:L $   236,768/pp (base $  93,635 + tax $ 143,133 = 60%) Asientos:9
+  VUELTA 2026-03-16  FO5951   FLN->AEP  04:25-06:30 Clase:P $   252,691/pp (base $ 164,195 + tax $  88,497 = 35%) Asientos:9
+  VUELTA 2026-03-18  FO5953   FLN->EZE  20:55-23:00 Clase:P $   252,691/pp (base $ 164,195 + tax $  88,497 = 35%) Asientos:2
+  VUELTA 2026-03-15  FO5953   FLN->EZE  20:55-23:00 Clase:Q $   282,923/pp (base $ 186,261 + tax $  96,661 = 34%) Asientos:4
+  VUELTA 2026-03-15  FO5951   FLN->AEP  04:25-06:30 Clase:V $   313,193/pp (base $ 208,357 + tax $ 104,837 = 33%) Asientos:9
+  IDA    2026-03-09  FO5954   EZE->FLN  08:05-10:00 Clase:V $   393,937/pp (base $ 208,357 + tax $ 185,580 = 47%) Asientos:3
+
+=== PROPORCION IMPUESTOS vs TARIFA BASE ===
+  FO5951 2026-03-17: Base $109,794 + Impuestos $68,369 = $178,163
+    -> Impuestos son el 38% del precio total
+  FO5955 2026-03-17: Base $109,794 + Impuestos $68,369 = $178,163
+    -> Impuestos son el 38% del precio total
+  FO5951 2026-03-17: Base $109,794 + Impuestos $68,369 = $178,163
+    -> Impuestos son el 38% del precio total
+  FO5955 2026-03-17: Base $109,794 + Impuestos $68,369 = $178,163
+    -> Impuestos son el 38% del precio total
+  FO5951 2026-03-18: Base $109,794 + Impuestos $68,369 = $178,163
+    -> Impuestos son el 38% del precio total
+
+=== ANALISIS DE BEFORETAX UNICO (tarifa pura de la aerolinea) ===
+  Tarifas base unicas encontradas: 9
+  Base $    51,660 -> con tax $   179,262 | 40 vuelos | Clases: {'B'}
+  Base $    73,158 -> con tax $   208,715 | 30 vuelos | Clases: {'J'}
+  Base $    83,397 -> con tax $   222,741 | 10 vuelos | Clases: {'K'}
+  Base $    93,635 -> con tax $   236,768 | 10 vuelos | Clases: {'L'}
+  Base $   109,794 -> con tax $   178,163 | 30 vuelos | Clases: {'M'}
+  Base $   125,954 -> con tax $   200,302 | 30 vuelos | Clases: {'N'}
+  Base $   164,195 -> con tax $   252,691 | 20 vuelos | Clases: {'P'}
+  Base $   186,261 -> con tax $   282,923 | 10 vuelos | Clases: {'Q'}
+  Base $   208,357 -> con tax $   313,193 | 20 vuelos | Clases: {'V'}
