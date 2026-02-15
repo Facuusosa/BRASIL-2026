@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-02-15T12:40:54.991678",
+  "total_flags": 6,
+  "flags": {
+    "status:https://experimentation-beta.sts.flybondi.com/flags": null,
+    "status:https://experimentation-beta.sts.flybondi.com/api/flags": null,
+    "status:https://experimentation-beta.sts.flybondi.com/v1/flags": null,
+    "status:https://experimentation-beta.sts.flybondi.com/experiments": null,
+    "status:https://experimentation-beta.sts.flybondi.com/api/experiments": null,
+    "status:https://experimentation-beta.sts.flybondi.com/config": null
+  }
+}

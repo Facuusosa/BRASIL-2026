@@ -1,0 +1,1458 @@
+{
+  "timestamp": "2026-02-15T01:12:04.718646",
+  "total_cases": 44,
+  "total_anomalies": 7,
+  "results": [
+    {
+      "name": "zero_adults",
+      "description": "0 adultos — ¿acepta la API?",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:04.719775",
+      "status_code": 200,
+      "response_size": 289,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=0&children=0&infants=0&currency=ARS failed with a 400 response, reason: adults must be greater than or equal to 1"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:12:04.727Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=0&children=0&infants=0&currency=ARS failed with a 400 response, reason: adults must be greater than or equal to 1\",\"status\":400}],\"data\":null}\n"
+    },
+    {
+      "name": "many_adults",
+      "description": "99 adultos — ¿overflow o precio diferente?",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:06.338044",
+      "status_code": 200,
+      "response_size": 288,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=99&children=0&infants=0&currency=ARS failed with a 400 response, reason: adults must be less than or equal to 14"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:12:06.326Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=99&children=0&infants=0&currency=ARS failed with a 400 response, reason: adults must be less than or equal to 14\",\"status\":400}],\"data\":null}\n"
+    },
+    {
+      "name": "one_adult",
+      "description": "1 adulto — ¿precio proporcional o diferente?",
+      "expected": "success_cheaper",
+      "timestamp": "2026-02-15T01:12:07.958613",
+      "status_code": 200,
+      "response_size": 8574,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 194022.54,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "D"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "children_no_adults",
+      "description": "3 niños sin adultos",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:10.119108",
+      "status_code": 200,
+      "response_size": 289,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=0&children=3&infants=0&currency=ARS failed with a 400 response, reason: adults must be greater than or equal to 1"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:12:09.828Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=0&children=3&infants=0&currency=ARS failed with a 400 response, reason: adults must be greater than or equal to 1\",\"status\":400}],\"data\":null}\n"
+    },
+    {
+      "name": "many_infants",
+      "description": "2 adultos + 10 infantes",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:11.359323",
+      "status_code": 200,
+      "response_size": 288,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=10&currency=ARS failed with a 400 response, reason: infants must be less than or equal to 4"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:12:11.092Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=10&currency=ARS failed with a 400 response, reason: infants must be less than or equal to 4\",\"status\":400}],\"data\":null}\n"
+    },
+    {
+      "name": "negative_adults",
+      "description": "-1 adultos — ¿crash?",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:12.626990",
+      "status_code": 200,
+      "response_size": 290,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=-1&children=0&infants=0&currency=ARS failed with a 400 response, reason: adults must be greater than or equal to 1"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:12:12.376Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=-1&children=0&infants=0&currency=ARS failed with a 400 response, reason: adults must be greater than or equal to 1\",\"status\":400}],\"data\":null}\n"
+    },
+    {
+      "name": "past_date",
+      "description": "Fecha del pasado (2026-02-14)",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:13.915076",
+      "status_code": 200,
+      "response_size": 4415,
+      "has_errors": false,
+      "flights_count": 3,
+      "prices_sample": [
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": [
+        "UNEXPECTED_SUCCESS (3 vuelos)"
+      ]
+    },
+    {
+      "name": "same_day",
+      "description": "Ida y vuelta el mismo día",
+      "expected": "success_or_empty",
+      "timestamp": "2026-02-15T01:12:16.288896",
+      "status_code": 200,
+      "response_size": 5805,
+      "has_errors": false,
+      "flights_count": 4,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 312177.17,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "V"
+        },
+        {
+          "afterTax": 282013.33,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "inverted_dates",
+      "description": "Vuelta antes de ida",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:18.478105",
+      "status_code": 200,
+      "response_size": 261,
+      "has_errors": false,
+      "flights_count": 0,
+      "prices_sample": [],
+      "anomalies": []
+    },
+    {
+      "name": "far_future",
+      "description": "Fecha muy lejana (2030-12-31)",
+      "expected": "error_or_empty",
+      "timestamp": "2026-02-15T01:12:30.295237",
+      "status_code": 200,
+      "response_size": 261,
+      "has_errors": false,
+      "flights_count": 0,
+      "prices_sample": [],
+      "anomalies": []
+    },
+    {
+      "name": "today_departure",
+      "description": "Salir hoy mismo",
+      "expected": "success_or_empty",
+      "timestamp": "2026-02-15T01:12:31.853180",
+      "status_code": 200,
+      "response_size": 5801,
+      "has_errors": false,
+      "flights_count": 4,
+      "prices_sample": [
+        {
+          "afterTax": 375044.34,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "O"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "no_return",
+      "description": "Sin fecha de vuelta (null)",
+      "expected": "one_way_or_error",
+      "timestamp": "2026-02-15T01:12:33.721854",
+      "status_code": 200,
+      "response_size": 4392,
+      "has_errors": false,
+      "flights_count": 3,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "invalid_date_format",
+      "description": "Fecha con formato incorrecto",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:35.225175",
+      "status_code": 200,
+      "response_size": 120,
+      "has_errors": true,
+      "error_messages": [
+        "Invalid time value"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:12:34.914Z\",\"name\":\"GraphQLError\",\"message\":\"Invalid time value\"}],\"data\":null}\n"
+    },
+    {
+      "name": "swapped_route",
+      "description": "Ruta invertida: FLN → BUE",
+      "expected": "success_different_prices",
+      "timestamp": "2026-02-15T01:12:36.449570",
+      "status_code": 200,
+      "response_size": 8579,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 240435.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "P"
+        },
+        {
+          "afterTax": 297643.56,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "V"
+        },
+        {
+          "afterTax": 269020.94,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 189632.64,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "D"
+        },
+        {
+          "afterTax": 292203.16,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "O"
+        },
+        {
+          "afterTax": 202877.04,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "same_origin_dest",
+      "description": "BUE → BUE (mismo origen y destino)",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:38.502808",
+      "status_code": 200,
+      "response_size": 261,
+      "has_errors": false,
+      "flights_count": 0,
+      "prices_sample": [],
+      "anomalies": []
+    },
+    {
+      "name": "nonexistent_airport",
+      "description": "Aeropuerto que no existe: ZZZ",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:40.039383",
+      "status_code": 200,
+      "response_size": 261,
+      "has_errors": false,
+      "flights_count": 0,
+      "prices_sample": [],
+      "anomalies": []
+    },
+    {
+      "name": "domestic_route",
+      "description": "Ruta doméstica: BUE → COR (Córdoba)",
+      "expected": "success",
+      "timestamp": "2026-02-15T01:12:41.627675",
+      "status_code": 200,
+      "response_size": 12767,
+      "has_errors": false,
+      "flights_count": 7,
+      "prices_sample": [
+        {
+          "afterTax": 65756.76,
+          "promotionAmount": 0,
+          "type": "CLUB",
+          "class": "N"
+        },
+        {
+          "afterTax": 78241.12,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 91716.25,
+          "promotionAmount": 0,
+          "type": "CLUB",
+          "class": "Q"
+        },
+        {
+          "afterTax": 110690.49,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 74745.5,
+          "promotionAmount": 0,
+          "type": "CLUB",
+          "class": "O"
+        },
+        {
+          "afterTax": 89477.06,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "O"
+        },
+        {
+          "afterTax": 46550.04,
+          "promotionAmount": 0,
+          "type": "CLUB",
+          "class": "L"
+        },
+        {
+          "afterTax": 54232.72,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "L"
+        },
+        {
+          "afterTax": 74745.5,
+          "promotionAmount": 0,
+          "type": "CLUB",
+          "class": "O"
+        },
+        {
+          "afterTax": 89477.06,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "O"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "currency_usd",
+      "description": "Precio en USD",
+      "expected": "success_in_usd",
+      "timestamp": "2026-02-15T01:12:44.536052",
+      "status_code": 200,
+      "response_size": 8517,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 131.53,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 216.75,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 131.53,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 114.51,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 102.33,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 114.51,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": [
+        "SUSPICIOUSLY_LOW (6 fares < $1000)"
+      ]
+    },
+    {
+      "name": "currency_brl",
+      "description": "Precio en BRL (reales)",
+      "expected": "success_or_error",
+      "timestamp": "2026-02-15T01:12:46.789096",
+      "status_code": 200,
+      "response_size": 8532,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 679.63,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 1120.03,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 679.63,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 591.72,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 528.79,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 591.72,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": [
+        "SUSPICIOUSLY_LOW (5 fares < $1000)"
+      ]
+    },
+    {
+      "name": "currency_eur",
+      "description": "Precio en EUR",
+      "expected": "success_or_error",
+      "timestamp": "2026-02-15T01:12:48.943896",
+      "status_code": 200,
+      "response_size": 8482,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 111.44,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 183.13,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 111.44,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 96.76,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 87.13,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 96.76,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": [
+        "SUSPICIOUSLY_LOW (6 fares < $1000)"
+      ]
+    },
+    {
+      "name": "currency_invalid",
+      "description": "Moneda inexistente: XYZ",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:12:51.195436",
+      "error": "Failed to perform, curl: (23) Failure writing output to destination, passed 13 returned 0. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.",
+      "anomaly": "REQUEST_FAILED"
+    },
+    {
+      "name": "currency_clp",
+      "description": "Precio en CLP (pesos chilenos)",
+      "expected": "success_or_error",
+      "timestamp": "2026-02-15T01:12:53.586402",
+      "status_code": 200,
+      "response_size": 8536,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 112587.07,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 185540.74,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 112587.07,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 98020.96,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 87597.02,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 98020.96,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_empty",
+      "description": "PromoCode vacío",
+      "expected": "success_no_discount",
+      "timestamp": "2026-02-15T01:12:55.860867",
+      "status_code": 200,
+      "response_size": 8580,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_admin",
+      "description": "PromoCode 'ADMIN'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:12:58.445933",
+      "status_code": 200,
+      "response_size": 8585,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_test",
+      "description": "PromoCode 'TEST'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:13:00.960278",
+      "status_code": 200,
+      "response_size": 8584,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_debug",
+      "description": "PromoCode 'DEBUG'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:13:03.471547",
+      "status_code": 200,
+      "response_size": 8585,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_free",
+      "description": "PromoCode 'FREE'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:13:06.047775",
+      "status_code": 200,
+      "response_size": 8584,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_100off",
+      "description": "PromoCode '100OFF'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:13:08.503212",
+      "status_code": 200,
+      "response_size": 8586,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_carnaval",
+      "description": "PromoCode 'CARNAVAL'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:13:10.748052",
+      "status_code": 200,
+      "response_size": 8881,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 194996.47,
+          "promotionAmount": 9483.17,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 344586.03,
+          "promotionAmount": 18897.97,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 194996.47,
+          "promotionAmount": 9483.17,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 185927.16,
+          "promotionAmount": 17265.12,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 162633.54,
+          "promotionAmount": 17014.39,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 185927.16,
+          "promotionAmount": 17265.12,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": [
+        "PROMO_ACTIVE (6 fares)"
+      ]
+    },
+    {
+      "name": "promo_carnaval2026",
+      "description": "PromoCode 'CARNAVAL2026'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:13:14.347152",
+      "status_code": 200,
+      "response_size": 8592,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_flybondi",
+      "description": "PromoCode 'FLYBONDI'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:13:16.684407",
+      "status_code": 200,
+      "response_size": 8588,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_verano",
+      "description": "PromoCode 'VERANO'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:13:19.174522",
+      "status_code": 200,
+      "response_size": 8586,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_hotsale",
+      "description": "PromoCode 'HOTSALE'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:13:21.402559",
+      "status_code": 200,
+      "response_size": 8587,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_club",
+      "description": "PromoCode 'CLUB'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:13:23.859557",
+      "status_code": 200,
+      "response_size": 8584,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 362385.61,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 207980.1,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 177622.41,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 199683.11,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "promo_sql_injection",
+      "description": "PromoCode con SQL injection attempt",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:13:26.308585",
+      "status_code": 200,
+      "response_size": 289,
+      "has_errors": false,
+      "flights_count": 0,
+      "prices_sample": [],
+      "anomalies": []
+    },
+    {
+      "name": "market_br",
+      "description": "Market origin = BR",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:27.714221",
+      "status_code": 200,
+      "response_size": 8532,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 679.63,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 1120.03,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 679.63,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 591.72,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 528.79,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 591.72,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": [
+        "SUSPICIOUSLY_LOW (5 fares < $1000)"
+      ]
+    },
+    {
+      "name": "market_us",
+      "description": "Market origin = US",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:30.099050",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:29.787Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    },
+    {
+      "name": "market_uk",
+      "description": "Market origin = UK",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:31.311912",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:31.088Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    },
+    {
+      "name": "market_py",
+      "description": "Market origin = PY",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:32.614278",
+      "status_code": 200,
+      "response_size": 8532,
+      "has_errors": false,
+      "flights_count": 6,
+      "prices_sample": [
+        {
+          "afterTax": 862753,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 1421828,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "Q"
+        },
+        {
+          "afterTax": 862753,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "J"
+        },
+        {
+          "afterTax": 751233,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        },
+        {
+          "afterTax": 671304,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "M"
+        },
+        {
+          "afterTax": 751233,
+          "promotionAmount": 0,
+          "type": "STANDARD",
+          "class": "N"
+        }
+      ],
+      "anomalies": []
+    },
+    {
+      "name": "market_uy",
+      "description": "Market origin = UY",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:34.805151",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:34.529Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    },
+    {
+      "name": "market_cl",
+      "description": "Market origin = CL",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:36.052141",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:35.953Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    },
+    {
+      "name": "market_co",
+      "description": "Market origin = CO",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:37.511366",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:37.255Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    },
+    {
+      "name": "market_pe",
+      "description": "Market origin = PE",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:38.801091",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:38.527Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    },
+    {
+      "name": "market_mx",
+      "description": "Market origin = MX",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:13:40.051825",
+      "status_code": 200,
+      "response_size": 257,
+      "has_errors": true,
+      "error_messages": [
+        "Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden"
+      ],
+      "parse_error": "'NoneType' object has no attribute 'get'",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:13:39.793Z\",\"name\":\"GraphQLError\",\"message\":\"Request to /flights-service/BUE/FLN/20260309/20260316?adults=2&children=0&infants=0&currency=ARS failed with a 403 response, reason: Forbidden\",\"status\":403}],\"data\":null}\n"
+    }
+  ]
+}

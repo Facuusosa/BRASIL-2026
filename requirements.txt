@@ -8,6 +8,8 @@
 # --- Web Scraping ---
 playwright>=1.49.0              # Automatización de navegador (Chromium)
 playwright-stealth>=1.0.6       # Anti-detección de bots (oculta Playwright)
+curl-cffi>=0.7.0                # HTTP con TLS fingerprint (bypass Cloudflare)
+requests>=2.31.0                # HTTP fallback si curl_cffi no está disponible
 
 # --- Base de Datos ---
 sqlalchemy>=2.0.25              # ORM para SQLite (modelos, queries)

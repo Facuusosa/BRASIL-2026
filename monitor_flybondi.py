@@ -565,8 +565,10 @@ def classify_alert(total_ars: float) -> tuple[str, str]:
 
 
 def format_price_ars(price: float) -> str:
-    """Formatea precio en ARS con separador de miles."""
-    return f"${price:,.0f}".replace(",", ".")
+    """Formatea precio en ARS con separador de miles y estima USD con margen."""
+    ars_price = price
+    usd_price = (ars_price / DOLAR_MEP) + 50 # Sumamos 50 USD estimados de tasas
+    return f"${ars_price:,.0f} (US$ {usd_price:.0f})".replace(",", ".")
 
 
 def format_flight_line(flight: dict, label: str) -> str:
@@ -983,6 +985,24 @@ def generate_html_report(all_results: list[dict], calendar: dict | None = None):
                         </div>"""
                 cal_html += "</div>"
 
+    # === LEER INTELIGENCIA DE CÓDIGO ===
+    codigo_section = ""
+    resumen_path = DATA_DIR / "resumen_codigo.txt"
+    if resumen_path.exists():
+        try:
+            contenido_codigo = resumen_path.read_text(encoding="utf-8")
+            if contenido_codigo.strip():
+                codigo_section = f"""
+                <div class="section" id="codigo">
+                    <div class="section-title">🕵️ Inteligencia de Código Fuente</div>
+                    <div style="background:rgba(0,0,0,0.3); padding:15px; border-radius:10px; font-family:monospace; font-size:0.9em; border:1px solid #444;">
+                        {contenido_codigo}
+                    </div>
+                </div>
+                """
+        except Exception:
+            pass
+
     # === HTML COMPLETO ===
     html = f"""<!DOCTYPE html>
 <html lang="es">
@@ -1242,6 +1262,7 @@ def generate_html_report(all_results: list[dict], calendar: dict | None = None):
         <a href="#ida">✈️ Solo Ida</a>
         <a href="#vuelta">🔙 Solo Vuelta</a>
         <a href="#calendario">📅 Calendario</a>
+        { '<a href="#codigo">🕵️ Código Fuente</a>' if codigo_section else '' }
     </div>
 
     <div class="hero">
@@ -1299,6 +1320,8 @@ def generate_html_report(all_results: list[dict], calendar: dict | None = None):
         <div class="section-title">📅 Calendario de Tarifas (precio por persona, sin equipaje)</div>
         {cal_html}
     </div>
+
+    {codigo_section}
 
     <div class="footer">
         Monitor Flybondi v1.0 · Datos de la API de Flybondi en tiempo real<br>

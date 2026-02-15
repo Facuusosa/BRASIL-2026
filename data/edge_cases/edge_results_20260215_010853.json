@@ -1,0 +1,447 @@
+{
+  "timestamp": "2026-02-15T01:08:53.056244",
+  "total_cases": 44,
+  "total_anomalies": 44,
+  "results": [
+    {
+      "name": "zero_adults",
+      "description": "0 adultos — ¿acepta la API?",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:08:53.057340",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:08:52.728Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:52.728Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:52.728Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:52.728Z\",\"name\""
+    },
+    {
+      "name": "many_adults",
+      "description": "99 adultos — ¿overflow o precio diferente?",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:08:54.256286",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:08:54.190Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:54.190Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:54.190Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:54.190Z\",\"name\""
+    },
+    {
+      "name": "one_adult",
+      "description": "1 adulto — ¿precio proporcional o diferente?",
+      "expected": "success_cheaper",
+      "timestamp": "2026-02-15T01:08:55.718263",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:08:55.423Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:55.423Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:55.423Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:55.423Z\",\"name\""
+    },
+    {
+      "name": "children_no_adults",
+      "description": "3 niños sin adultos",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:08:56.953219",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:08:56.634Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:56.634Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:56.634Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:56.634Z\",\"name\""
+    },
+    {
+      "name": "many_infants",
+      "description": "2 adultos + 10 infantes",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:08:58.161592",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:08:57.894Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:57.894Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:57.894Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:57.894Z\",\"name\""
+    },
+    {
+      "name": "negative_adults",
+      "description": "-1 adultos — ¿crash?",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:08:59.421302",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:08:59.118Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:59.118Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:59.118Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:08:59.118Z\",\"name\""
+    },
+    {
+      "name": "past_date",
+      "description": "Fecha del pasado (2026-02-14)",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:00.645950",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:00.542Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:00.542Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:00.542Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:00.542Z\",\"name\""
+    },
+    {
+      "name": "same_day",
+      "description": "Ida y vuelta el mismo día",
+      "expected": "success_or_empty",
+      "timestamp": "2026-02-15T01:09:02.069151",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:01.942Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:01.942Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:01.942Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:01.942Z\",\"name\""
+    },
+    {
+      "name": "inverted_dates",
+      "description": "Vuelta antes de ida",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:03.468698",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:03.377Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:03.377Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:03.377Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:03.377Z\",\"name\""
+    },
+    {
+      "name": "far_future",
+      "description": "Fecha muy lejana (2030-12-31)",
+      "expected": "error_or_empty",
+      "timestamp": "2026-02-15T01:09:04.906845",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:04.820Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:04.820Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:04.820Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:04.820Z\",\"name\""
+    },
+    {
+      "name": "today_departure",
+      "description": "Salir hoy mismo",
+      "expected": "success_or_empty",
+      "timestamp": "2026-02-15T01:09:06.347769",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:06.252Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:06.253Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:06.253Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:06.253Z\",\"name\""
+    },
+    {
+      "name": "no_return",
+      "description": "Sin fecha de vuelta (null)",
+      "expected": "one_way_or_error",
+      "timestamp": "2026-02-15T01:09:07.784396",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:07.481Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:07.481Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:07.481Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:07.481Z\",\"name\""
+    },
+    {
+      "name": "invalid_date_format",
+      "description": "Fecha con formato incorrecto",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:09.007719",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:08.697Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:08.697Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:08.697Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:08.697Z\",\"name\""
+    },
+    {
+      "name": "swapped_route",
+      "description": "Ruta invertida: FLN → BUE",
+      "expected": "success_different_prices",
+      "timestamp": "2026-02-15T01:09:10.223954",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:09.890Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:09.890Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:09.890Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:09.890Z\",\"name\""
+    },
+    {
+      "name": "same_origin_dest",
+      "description": "BUE → BUE (mismo origen y destino)",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:11.416715",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:11.119Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:11.119Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:11.119Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:11.119Z\",\"name\""
+    },
+    {
+      "name": "nonexistent_airport",
+      "description": "Aeropuerto que no existe: ZZZ",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:12.644161",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:12.369Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:12.369Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:12.369Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:12.369Z\",\"name\""
+    },
+    {
+      "name": "domestic_route",
+      "description": "Ruta doméstica: BUE → COR (Córdoba)",
+      "expected": "success",
+      "timestamp": "2026-02-15T01:09:13.911415",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:13.605Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:13.605Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:13.605Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:13.605Z\",\"name\""
+    },
+    {
+      "name": "currency_usd",
+      "description": "Precio en USD",
+      "expected": "success_in_usd",
+      "timestamp": "2026-02-15T01:09:15.132459",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:15.916Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:15.916Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:15.916Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:15.916Z\",\"name\""
+    },
+    {
+      "name": "currency_brl",
+      "description": "Precio en BRL (reales)",
+      "expected": "success_or_error",
+      "timestamp": "2026-02-15T01:09:17.444792",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:17.173Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:17.173Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:17.173Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:17.173Z\",\"name\""
+    },
+    {
+      "name": "currency_eur",
+      "description": "Precio en EUR",
+      "expected": "success_or_error",
+      "timestamp": "2026-02-15T01:09:18.700482",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:18.341Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:18.341Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:18.341Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:18.341Z\",\"name\""
+    },
+    {
+      "name": "currency_invalid",
+      "description": "Moneda inexistente: XYZ",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:19.876676",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:19.515Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:19.515Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:19.515Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:19.515Z\",\"name\""
+    },
+    {
+      "name": "currency_clp",
+      "description": "Precio en CLP (pesos chilenos)",
+      "expected": "success_or_error",
+      "timestamp": "2026-02-15T01:09:21.040955",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:20.860Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:20.860Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:20.860Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:20.860Z\",\"name\""
+    },
+    {
+      "name": "promo_empty",
+      "description": "PromoCode vacío",
+      "expected": "success_no_discount",
+      "timestamp": "2026-02-15T01:09:22.418061",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:22.123Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:22.123Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:22.123Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:22.123Z\",\"name\""
+    },
+    {
+      "name": "promo_admin",
+      "description": "PromoCode 'ADMIN'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:09:23.652456",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:23.351Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:23.351Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:23.351Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:23.351Z\",\"name\""
+    },
+    {
+      "name": "promo_test",
+      "description": "PromoCode 'TEST'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:09:24.885357",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:24.812Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:24.812Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:24.812Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:24.812Z\",\"name\""
+    },
+    {
+      "name": "promo_debug",
+      "description": "PromoCode 'DEBUG'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:09:26.343305",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:26.350Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:26.350Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:26.350Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:26.350Z\",\"name\""
+    },
+    {
+      "name": "promo_free",
+      "description": "PromoCode 'FREE'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:09:27.905748",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:27.802Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:27.802Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:27.802Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:27.802Z\",\"name\""
+    },
+    {
+      "name": "promo_100off",
+      "description": "PromoCode '100OFF'",
+      "expected": "error_or_no_discount",
+      "timestamp": "2026-02-15T01:09:29.332701",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:29.175Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:29.175Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:29.175Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:29.175Z\",\"name\""
+    },
+    {
+      "name": "promo_carnaval",
+      "description": "PromoCode 'CARNAVAL'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:09:30.712406",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:30.765Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:30.765Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:30.765Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:30.765Z\",\"name\""
+    },
+    {
+      "name": "promo_carnaval2026",
+      "description": "PromoCode 'CARNAVAL2026'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:09:32.303000",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:32.158Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:32.158Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:32.158Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:32.158Z\",\"name\""
+    },
+    {
+      "name": "promo_flybondi",
+      "description": "PromoCode 'FLYBONDI'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:09:33.688180",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:33.392Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:33.392Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:33.392Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:33.392Z\",\"name\""
+    },
+    {
+      "name": "promo_verano",
+      "description": "PromoCode 'VERANO'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:09:34.978259",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:34.627Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:34.627Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:34.627Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:34.627Z\",\"name\""
+    },
+    {
+      "name": "promo_hotsale",
+      "description": "PromoCode 'HOTSALE'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:09:36.154426",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:35.837Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:35.837Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:35.837Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:35.837Z\",\"name\""
+    },
+    {
+      "name": "promo_club",
+      "description": "PromoCode 'CLUB'",
+      "expected": "possible_discount",
+      "timestamp": "2026-02-15T01:09:37.365061",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:36.997Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:36.997Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:36.997Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:36.997Z\",\"name\""
+    },
+    {
+      "name": "promo_sql_injection",
+      "description": "PromoCode con SQL injection attempt",
+      "expected": "error",
+      "timestamp": "2026-02-15T01:09:38.526356",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:38.278Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:38.278Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:38.278Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:38.278Z\",\"name\""
+    },
+    {
+      "name": "market_br",
+      "description": "Market origin = BR",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:39.805555",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:39.454Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:39.454Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:39.454Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:39.454Z\",\"name\""
+    },
+    {
+      "name": "market_us",
+      "description": "Market origin = US",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:40.971727",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:40.697Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:40.697Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:40.697Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:40.697Z\",\"name\""
+    },
+    {
+      "name": "market_uk",
+      "description": "Market origin = UK",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:42.212631",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:42.104Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:42.104Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:42.104Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:42.104Z\",\"name\""
+    },
+    {
+      "name": "market_py",
+      "description": "Market origin = PY",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:43.620595",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:43.511Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:43.511Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:43.511Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:43.511Z\",\"name\""
+    },
+    {
+      "name": "market_uy",
+      "description": "Market origin = UY",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:45.026605",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:44.957Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:44.958Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:44.958Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:44.958Z\",\"name\""
+    },
+    {
+      "name": "market_cl",
+      "description": "Market origin = CL",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:46.483424",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:46.375Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:46.375Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:46.375Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:46.375Z\",\"name\""
+    },
+    {
+      "name": "market_co",
+      "description": "Market origin = CO",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:47.893648",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:47.880Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:47.880Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:47.880Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:47.880Z\",\"name\""
+    },
+    {
+      "name": "market_pe",
+      "description": "Market origin = PE",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:49.397129",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:49.324Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:49.324Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:49.324Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:49.324Z\",\"name\""
+    },
+    {
+      "name": "market_mx",
+      "description": "Market origin = MX",
+      "expected": "success_maybe_different_price",
+      "timestamp": "2026-02-15T01:09:50.844079",
+      "status_code": 400,
+      "response_size": 741,
+      "anomaly": "UNEXPECTED_HTTP_400",
+      "response_snippet": "{\"errors\":[{\"timeThrown\":\"2026-02-15T04:09:50.560Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$origin\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:50.560Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$destination\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:50.560Z\",\"name\":\"ValidationError\",\"message\":\"Variable \\\"$currency\\\" is never used in operation \\\"EdgeCaseTest\\\".\"},{\"timeThrown\":\"2026-02-15T04:09:50.560Z\",\"name\""
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+DOWNLOADING https://flybondi.com/static/js/bundle.18bfad73.js...
+Bundle size: 6.52 MB
+
+[PROMPT 1] GraphQL Hidden Queries/Mutations
+--------------------------------------------------
+Found 36 operations. Top 20:
+  - MUTATION LoginUserMutation
+  - MUTATION UpdateSessionMutation
+  - MUTATION useAddBankDiscountMutation
+  - MUTATION useAddClubDiscountMutation
+  - MUTATION useAddClubMemberMutation
+  - MUTATION useAddPromoCodeMutation
+  - MUTATION useAddUBADiscountMutation
+  - MUTATION useAddVoucherMutation
+  - MUTATION useAssignSeatsMutation
+  - MUTATION useChangeAlternativeFlightFaresMutation
+  - MUTATION useCreateGiftCardSessionMutation
+  - MUTATION useCreatePassSessionMutation
+  - MUTATION useLoginClubMutation
+  - MUTATION useLoginCustomerMutation
+  - MUTATION useLoginMMBUserMutation
+  - MUTATION useLoginPassMutation
+  - MUTATION useNewsletterSubscribeMutation
+  - MUTATION useProcessBookingMutation
+  - MUTATION usePurchaseClubSubscriptionMutation
+  - MUTATION usePurchaseGiftCardMutation
+
+Sensitive Mutations:
+  - mutation useAddBankDiscountMutation
+  - mutation useAddClubDiscountMutation
+  - mutation useAddPromoCodeMutation
+  - mutation useAddClubMemberMutation
+  - mutation useAddUBADiscountMutation
+  - mutation useRemovePromoCodeMutation
+  - mutation useRemoveVoucherMutation
+  - mutation useRemoveAllVouchersMutation
+  - mutation useRemoveBankDiscountMutation
+  - mutation useRemoveClubDiscountMutation
+  - mutation UpdateSessionMutation
+  - mutation useCreatePassSessionMutation
+  - mutation useCreateGiftCardSessionMutation
+  - mutation usePurchaseGiftCardMutation
+  - mutation usePurchaseClubSubscriptionMutation
+  - mutation usePurchasePassMutation
+  - mutation useAddBankDiscountMutation
+  - mutation useRemoveBankDiscountMutation
+  - mutation useRemoveClubDiscountMutation
+  - mutation useAddClubDiscountMutation
+  - mutation useRemoveUBADiscountMutation
+  - mutation useRemovePromoCodeMutation
+  - mutation useAddPromoCodeMutation
+
+[PROMPT 2] Discount Logic Analysis
+--------------------------------------------------
+Found 85 discount references. Sample:
+  - BankDiscount
+  - ClubDiscount
+  - DiscountCard_reservation
+  - DiscountReservationInfo
+  - Discounts
+  - ENABLE_MULTI_VOUCHERS
+  - ENABLE_PROMO_CODES_ON_SEARCHBAR
+  - ENABLE_VOUCHERS_REMOVE
+  - GetSessionVouchersQuery
+  - MMBPromotion
+  - MMBPromotionImages_viewer
+  - MMBPromotions_session
+  - PROMOCODE
+  - PromoCode
+  - PromoCodeCard_session
+
+  UBA specific references found:
+    ...IDAvwV8Uu9AeCoBYfSppvupBzt87PXUBAZPgMB2BLxkbWeu9PRaAWH0WkHPX79A...
+    ...,kind:"Operation",name:"useAddUBADiscountMutation",selections:[...
+    ...&(c=l),0===c)break t;n.set(i.subarray(s,s+c),r),o-=c,s+=c,l-=c,...
+    ...tRRcc8VN7+f79Zfk1gpFzSVYIzH15tuBayqx/yW91CTL4mUR7Sj8nGuv6WOx3OP...
+    ...mt3 pb1 bw1 ttu pointer"},f("UBA.remove")),o.a.createElement(a...
+
+[PROMPT 4] Session Management
+--------------------------------------------------
+localStorage Keys used:
+  - cookie_consent
+  - raygun:user
+
+[PROMPT 6] Feature Flags
+--------------------------------------------------
+Found 12 potential flags:
+  - enable_cash_and_two_card_redesign
+  - enable_original_currency
+  - enable_pass_search_
+  - enable_payment_redesign
+  - enable_product_checkout
+  - enable_promocode_at_right
+  - enable_seats_selection
+  - enable_staff_selector
+  - enable_tooltip_on_usd
+  - enable_usd_payment
+  - enable_usd_promocode
+  - enable_voucher_ar_usd
+
+[EXTRA] API Endpoints Discovery
+--------------------------------------------------
+  - /api/features/
+  - http://loading.retry.widdit.com/
+  - http://qr.afip.gob.ar/?qr=7-yIduVuX557MA-2MVNatA,,
+  - http://static.flybondi.com/f/77475/x/55b513a5c7/impresion.svg
+  - http://tt.epicplay.com
+  - http://www.example.com
+  - http://www.google.com/maps/@
+  - https://$1.
+  - https://8962e038ffc7415298be9f67ce7f65be@o1101096.ingest.sentry.io/6126775
+  - https://_
+  - https://_____
+  - https://api.deuna.io
+  - https://ayuda.flybondi.com/
+  - https://booking2.flybondi.com
+  - https://cdn.deuna.io/web-sdk/v1.3/index.js
