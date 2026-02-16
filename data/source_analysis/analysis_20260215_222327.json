@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-02-16T00:47:29.602191",
+  "timestamp": "2026-02-15T22:23:27.238569",
   "pages": [
     {
       "name": "search_dates",
       "url": "https://flybondi.com/ar/search/dates?adults=2&children=0&currency=ARS&fromCityCode=BUE&infants=0&toCityCode=FLN&utm_origin=search_bar",
       "description": "Página de selección de fechas",
       "status_code": 200,
-      "timestamp": "2026-02-16T00:47:30.450056",
+      "timestamp": "2026-02-15T22:23:28.037328",
       "findings": [
         {
           "type": "INLINE_SCRIPT",
-          "script_length": 1271526,
+          "script_length": 1267603,
           "matched_keywords": [
             {
               "keyword": "debug",
@@ -128,19 +128,19 @@
           "priority": "LOW"
         }
       ],
-      "html_size": 1473356,
-      "html_hash": "09f7c88870e223e8dec8f9309f6f395d"
+      "html_size": 1469433,
+      "html_hash": "a79a4fc39aa7f4df23de961bb8df66fa"
     },
     {
       "name": "search_results",
       "url": "https://flybondi.com/ar/search/results?adults=2&children=0&currency=ARS&departureDate=2026-03-09&returnDate=2026-03-16&fromCityCode=BUE&infants=0&toCityCode=FLN",
       "description": "Página de resultados de búsqueda",
       "status_code": 200,
-      "timestamp": "2026-02-16T00:47:34.742714",
+      "timestamp": "2026-02-15T22:23:32.173425",
       "findings": [
         {
           "type": "INLINE_SCRIPT",
-          "script_length": 1425975,
+          "script_length": 1429309,
           "matched_keywords": [
             {
               "keyword": "debug",
@@ -258,19 +258,19 @@
           "priority": "LOW"
         }
       ],
-      "html_size": 1755652,
-      "html_hash": "104d6a50f8b960a55b9f4b558aaf1957"
+      "html_size": 1758986,
+      "html_hash": "f1c2e6c24646ed7f469de51697cdfb91"
     },
     {
       "name": "home_ar",
       "url": "https://flybondi.com/ar",
       "description": "Home Argentina",
       "status_code": 200,
-      "timestamp": "2026-02-16T00:47:37.704574",
+      "timestamp": "2026-02-15T22:23:35.413094",
       "findings": [
         {
           "type": "INLINE_SCRIPT",
-          "script_length": 1254200,
+          "script_length": 1244459,
           "matched_keywords": [
             {
               "keyword": "debug",
@@ -403,15 +403,15 @@
           "priority": "LOW"
         }
       ],
-      "html_size": 1535609,
-      "html_hash": "ff06ba81060edaa8858115780caa2f99"
+      "html_size": 1525862,
+      "html_hash": "e497225ecf3e04e97c927332adba9aa2"
     },
     {
       "name": "home_br",
       "url": "https://flybondi.com/br",
       "description": "Home Brasil",
       "status_code": 200,
-      "timestamp": "2026-02-16T00:47:40.715353",
+      "timestamp": "2026-02-15T22:23:38.488193",
       "findings": [
         {
           "type": "INLINE_SCRIPT",
@@ -549,7 +549,7 @@
         }
       ],
       "html_size": 1483735,
-      "html_hash": "da48b224e2110e0b3dcc58941b091fe8"
+      "html_hash": "8174b2281319a7aa65f40f17ccc221db"
     }
   ],
   "total_findings": 18,
