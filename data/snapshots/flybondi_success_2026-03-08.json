@@ -1,0 +1,1235 @@
+{
+  "data": {
+    "airports": [
+      {
+        "code": "UAQ",
+        "location": {
+          "cityName": "San Juan"
+        }
+      },
+      {
+        "code": "EZE",
+        "location": {
+          "cityName": "Buenos Aires"
+        }
+      },
+      {
+        "code": "POA",
+        "location": {
+          "cityName": "Porto Alegre"
+        }
+      },
+      {
+        "code": "NQN",
+        "location": {
+          "cityName": "Neuquen"
+        }
+      },
+      {
+        "code": "FLN",
+        "location": {
+          "cityName": "Florian\u00f3polis"
+        }
+      },
+      {
+        "code": "PMY",
+        "location": {
+          "cityName": "Puerto Madryn"
+        }
+      },
+      {
+        "code": "RGL",
+        "location": {
+          "cityName": "R\u00edo Gallegos"
+        }
+      },
+      {
+        "code": "CWB",
+        "location": {
+          "cityName": "Curitiba"
+        }
+      },
+      {
+        "code": "VVI",
+        "location": {
+          "cityName": "Santa Cruz de la Sierra"
+        }
+      },
+      {
+        "code": "FTE",
+        "location": {
+          "cityName": "El Calafate"
+        }
+      },
+      {
+        "code": "LIM",
+        "location": {
+          "cityName": "Lima"
+        }
+      },
+      {
+        "code": "PSS",
+        "location": {
+          "cityName": "Posadas"
+        }
+      },
+      {
+        "code": "ROS",
+        "location": {
+          "cityName": "Rosario"
+        }
+      },
+      {
+        "code": "REL",
+        "location": {
+          "cityName": "Trelew"
+        }
+      },
+      {
+        "code": "JUJ",
+        "location": {
+          "cityName": "Jujuy"
+        }
+      },
+      {
+        "code": "USH",
+        "location": {
+          "cityName": "Ushuaia"
+        }
+      },
+      {
+        "code": "SLA",
+        "location": {
+          "cityName": "Salta"
+        }
+      },
+      {
+        "code": "CNF",
+        "location": {
+          "cityName": "Belo Horizonte"
+        }
+      },
+      {
+        "code": "ULA",
+        "location": {
+          "cityName": "Santa Cruz"
+        }
+      },
+      {
+        "code": "BHI",
+        "location": {
+          "cityName": "Bah\u00eda Blanca"
+        }
+      },
+      {
+        "code": "SDE",
+        "location": {
+          "cityName": "Santiago del Estero"
+        }
+      },
+      {
+        "code": "CRD",
+        "location": {
+          "cityName": "Comodoro Rivadavia"
+        }
+      },
+      {
+        "code": "MDZ",
+        "location": {
+          "cityName": "Mendoza"
+        }
+      },
+      {
+        "code": "MVD",
+        "location": {
+          "cityName": "Montevideo"
+        }
+      },
+      {
+        "code": "BRC",
+        "location": {
+          "cityName": "Bariloche"
+        }
+      },
+      {
+        "code": "RES",
+        "location": {
+          "cityName": "Resistencia"
+        }
+      },
+      {
+        "code": "GRU",
+        "location": {
+          "cityName": "Sao Paulo"
+        }
+      },
+      {
+        "code": "TUC",
+        "location": {
+          "cityName": "Tucum\u00e1n"
+        }
+      },
+      {
+        "code": "SSA",
+        "location": {
+          "cityName": "Salvador de Bah\u00eda"
+        }
+      },
+      {
+        "code": "GIG",
+        "location": {
+          "cityName": "Rio de Janeiro"
+        }
+      },
+      {
+        "code": "AEP",
+        "location": {
+          "cityName": "Buenos Aires"
+        }
+      },
+      {
+        "code": "ASU",
+        "location": {
+          "cityName": "Asunci\u00f3n"
+        }
+      },
+      {
+        "code": "CNQ",
+        "location": {
+          "cityName": "Corrientes"
+        }
+      },
+      {
+        "code": "PDP",
+        "location": {
+          "cityName": "Punta del Este"
+        }
+      },
+      {
+        "code": "MCZ",
+        "location": {
+          "cityName": "Maceio"
+        }
+      },
+      {
+        "code": "EPA",
+        "location": {
+          "cityName": "Buenos Aires"
+        }
+      },
+      {
+        "code": "ENO",
+        "location": {
+          "cityName": "Encarnaci\u00f3n"
+        }
+      },
+      {
+        "code": "IGR",
+        "location": {
+          "cityName": "Puerto Iguaz\u00fa"
+        }
+      },
+      {
+        "code": "COR",
+        "location": {
+          "cityName": "C\u00f3rdoba"
+        }
+      },
+      {
+        "code": "MDQ",
+        "location": {
+          "cityName": "Mar del Plata"
+        }
+      }
+    ],
+    "departures": [
+      {
+        "id": "BUE-FLN-ARS-2026-03-09",
+        "departure": "2026-03-09T00:00:00",
+        "fares": [
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          }
+        ],
+        "lowestPrice": 208715.01
+      },
+      {
+        "id": "BUE-FLN-ARS-2026-03-10",
+        "departure": "2026-03-10T00:00:00",
+        "fares": [
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          }
+        ],
+        "lowestPrice": 179261.65
+      },
+      {
+        "id": "BUE-FLN-ARS-2026-03-11",
+        "departure": "2026-03-11T00:00:00",
+        "fares": [
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          }
+        ],
+        "lowestPrice": 179261.65
+      },
+      {
+        "id": "BUE-FLN-ARS-2026-03-12",
+        "departure": "2026-03-12T00:00:00",
+        "fares": [
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          }
+        ],
+        "lowestPrice": 179261.65
+      },
+      {
+        "id": "BUE-FLN-ARS-2026-03-13",
+        "departure": "2026-03-13T00:00:00",
+        "fares": [
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 179261.65,
+            "fCCode": "B",
+            "fBCode": "BINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 194708.13,
+            "fCCode": "D",
+            "fBCode": "DINTLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 208715.01,
+            "fCCode": "J",
+            "fBCode": "JOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 222741.34,
+            "fCCode": "K",
+            "fBCode": "KOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 236767.68,
+            "fCCode": "L",
+            "fBCode": "LREFLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 258906.33,
+            "fCCode": "M",
+            "fBCode": "MOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 281044.98,
+            "fCCode": "N",
+            "fBCode": "NOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 303183.63,
+            "fCCode": "O",
+            "fBCode": "OOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 333434.6,
+            "fCCode": "P",
+            "fBCode": "POWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 363666.12,
+            "fCCode": "Q",
+            "fBCode": "QOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 393936.54,
+            "fCCode": "V",
+            "fBCode": "VOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 412904.19,
+            "fCCode": "W",
+            "fBCode": "WOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 431891.3,
+            "fCCode": "X",
+            "fBCode": "XOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": false,
+            "hasRestrictions": false
+          },
+          {
+            "price": 450858.95,
+            "fCCode": "Y",
+            "fBCode": "YOWLS",
+            "roundtrip": true,
+            "hasRestrictions": false
+          }
+        ],
+        "lowestPrice": 179261.65
+      }
+    ]
+  }
+}

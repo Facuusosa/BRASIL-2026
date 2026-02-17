@@ -1,0 +1,559 @@
+{
+  "timestamp": "2026-02-16T20:13:30.550618",
+  "pages": [
+    {
+      "name": "search_dates",
+      "url": "https://flybondi.com/ar/search/dates?adults=2&children=0&currency=ARS&fromCityCode=BUE&infants=0&toCityCode=FLN&utm_origin=search_bar",
+      "description": "Página de selección de fechas",
+      "status_code": 200,
+      "timestamp": "2026-02-16T20:13:31.462301",
+      "findings": [
+        {
+          "type": "INLINE_SCRIPT",
+          "script_length": 1254184,
+          "matched_keywords": [
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "de {{length}} dígitos al dorso\",\"name_helper\":\"Tal como figura en tu tarjeta\",\"debug\":{\"charging_card\":\"Generando transacción\",\"charging_card_error\":\"Ocurrió un err"
+            },
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "hay más pasajeros disponibles que cumplan con las condiciones de búsqueda.\"}},\"debug\":{\"sending_details\":\"Enviando datos de los pasajeros\",\"sending_details_error\":\""
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "e\"},\"UA_INSURANCE_BASIC\":{\"title\":\"Cobertura Básica\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica (incluye Teleasistencia"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ESTIC_BASIC\":{\"title\":\"Nacional Basic\",\"subtitle\":\"\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "OMESTIC_FULL\":{\"title\":\"Nacional Full\",\"subtitle\":\"\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": ":\"Internacional Basic\",\"subtitle\":\"(Con franquicia)\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\":\"Internacional Full\",\"subtitle\":\"(Sin franquicia)\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "tag-src\":{\"NEW\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fbf8b2ebc91\\u002Fnuevo-esp.svg\",\"PROMO\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fdfe25d8b94\\u002Fpromo-esp.svg\"},\"switch\":\"Mism"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "c91\\u002Fnuevo-esp.svg\",\"PROMO\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fdfe25d8b94\\u002Fpromo-esp.svg\"},\"switch\":\"Misma selección ida y vuelta\",\"alert\":\"Se alcanzó el máximo"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "siguientes tarjetas para pagar en cuotas nuestros vuelos nacionales: \",\"title\":\"Promociones bancarias\"},\"cash\":{\"aep_description\":\"En \\u003Cb\\u003EAeroparque\\u003C\\u"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "a las ventas (Paraguay)\",\"HW\":\"Tarifa Unificada de Uso de Aeropuerto (Perú)\"}},\"promo_code\":\"código de promoción\",\"protected_data\":\"Tu privacidad es importante. Todo"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"HW\":\"Tarifa Unificada de Uso de Aeropuerto (Perú)\"}},\"promo_code\":\"código de promoción\",\"protected_data\":\"Tu privacidad es importante. Todos los datos de tu compr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ed\":\"Este voucher ya fue aplicado\",\"amount\":\"Monto\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subt"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "cado\",\"amount\":\"Monto\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código pro"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "o a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código promocional de Flybondi, ingresalo para r"
+            }
+          ],
+          "priority": "HIGH"
+        },
+        {
+          "type": "TOKEN_EXPOSED",
+          "key": "token",
+          "value_preview": "ca276228b798400599fa8c74cf5e1d8e",
+          "priority": "HIGH"
+        },
+        {
+          "type": "METADATA",
+          "meta_type": "APP_VERSION",
+          "value": "2024.11.0",
+          "priority": "LOW"
+        }
+      ],
+      "html_size": 1456011,
+      "html_hash": "7b0a8e69bda7c63ce712d0f8cc09b6bc"
+    },
+    {
+      "name": "search_results",
+      "url": "https://flybondi.com/ar/search/results?adults=2&children=0&currency=ARS&departureDate=2026-03-09&returnDate=2026-03-16&fromCityCode=BUE&infants=0&toCityCode=FLN",
+      "description": "Página de resultados de búsqueda",
+      "status_code": 200,
+      "timestamp": "2026-02-16T20:13:35.798491",
+      "findings": [
+        {
+          "type": "INLINE_SCRIPT",
+          "script_length": 1408707,
+          "matched_keywords": [
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "de {{length}} dígitos al dorso\",\"name_helper\":\"Tal como figura en tu tarjeta\",\"debug\":{\"charging_card\":\"Generando transacción\",\"charging_card_error\":\"Ocurrió un err"
+            },
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "hay más pasajeros disponibles que cumplan con las condiciones de búsqueda.\"}},\"debug\":{\"sending_details\":\"Enviando datos de los pasajeros\",\"sending_details_error\":\""
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "siguientes tarjetas para pagar en cuotas nuestros vuelos nacionales: \",\"title\":\"Promociones bancarias\"},\"cash\":{\"aep_description\":\"En \\u003Cb\\u003EAeroparque\\u003C\\u"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "a las ventas (Paraguay)\",\"HW\":\"Tarifa Unificada de Uso de Aeropuerto (Perú)\"}},\"promo_code\":\"código de promoción\",\"protected_data\":\"Tu privacidad es importante. Todo"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"HW\":\"Tarifa Unificada de Uso de Aeropuerto (Perú)\"}},\"promo_code\":\"código de promoción\",\"protected_data\":\"Tu privacidad es importante. Todos los datos de tu compr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ed\":\"Este voucher ya fue aplicado\",\"amount\":\"Monto\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subt"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "cado\",\"amount\":\"Monto\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código pro"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "o a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código promocional de Flybondi, ingresalo para r"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "omocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código promocional de Flybondi, ingresalo para recibir el descuento.\",\"code\":\"Código\",\"butto"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "recibir el descuento.\",\"code\":\"Código\",\"button\":\"Aplicar\",\"invalid\":\"El código promocional se agotó o no es válido\",\"remove\":\"Quitar código promocional\",\"removeRede"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "nvalid\":\"El código promocional se agotó o no es válido\",\"remove\":\"Quitar código promocional\",\"removeRedesign\":\"Borrar código\"},\"specialDiscount\":{\"string\":\"Descuento"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "e\"},\"UA_INSURANCE_BASIC\":{\"title\":\"Cobertura Básica\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica (incluye Teleasistencia"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ESTIC_BASIC\":{\"title\":\"Nacional Basic\",\"subtitle\":\"\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "OMESTIC_FULL\":{\"title\":\"Nacional Full\",\"subtitle\":\"\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": ":\"Internacional Basic\",\"subtitle\":\"(Con franquicia)\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\":\"Internacional Full\",\"subtitle\":\"(Sin franquicia)\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            }
+          ],
+          "priority": "HIGH"
+        },
+        {
+          "type": "TOKEN_EXPOSED",
+          "key": "token",
+          "value_preview": "ca276228b798400599fa8c74cf5e1d8e",
+          "priority": "HIGH"
+        },
+        {
+          "type": "METADATA",
+          "meta_type": "APP_VERSION",
+          "value": "2024.11.0",
+          "priority": "LOW"
+        }
+      ],
+      "html_size": 1740266,
+      "html_hash": "4d1b1af69d00362fa9bc2f69d1d0c65a"
+    },
+    {
+      "name": "home_ar",
+      "url": "https://flybondi.com/ar",
+      "description": "Home Argentina",
+      "status_code": 200,
+      "timestamp": "2026-02-16T20:13:38.864811",
+      "findings": [
+        {
+          "type": "INLINE_SCRIPT",
+          "script_length": 1254200,
+          "matched_keywords": [
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "de {{length}} dígitos al dorso\",\"name_helper\":\"Tal como figura en tu tarjeta\",\"debug\":{\"charging_card\":\"Generando transacción\",\"charging_card_error\":\"Ocurrió un err"
+            },
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "hay más pasajeros disponibles que cumplan con las condiciones de búsqueda.\"}},\"debug\":{\"sending_details\":\"Enviando datos de los pasajeros\",\"sending_details_error\":\""
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "e\"},\"UA_INSURANCE_BASIC\":{\"title\":\"Cobertura Básica\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica (incluye Teleasistencia"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ESTIC_BASIC\":{\"title\":\"Nacional Basic\",\"subtitle\":\"\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "OMESTIC_FULL\":{\"title\":\"Nacional Full\",\"subtitle\":\"\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": ":\"Internacional Basic\",\"subtitle\":\"(Con franquicia)\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\":\"Internacional Full\",\"subtitle\":\"(Sin franquicia)\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"descr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"highlightedTitle\":\"PRECIO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PRECIO PROMOCIONAL\",\"conditions\":[{\"description\":\"Asistencia médica en caso de enfermedad o"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "tag-src\":{\"NEW\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fbf8b2ebc91\\u002Fnuevo-esp.svg\",\"PROMO\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fdfe25d8b94\\u002Fpromo-esp.svg\"},\"switch\":\"Mism"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "c91\\u002Fnuevo-esp.svg\",\"PROMO\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fdfe25d8b94\\u002Fpromo-esp.svg\"},\"switch\":\"Misma selección ida y vuelta\",\"alert\":\"Se alcanzó el máximo"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "siguientes tarjetas para pagar en cuotas nuestros vuelos nacionales: \",\"title\":\"Promociones bancarias\"},\"cash\":{\"aep_description\":\"En \\u003Cb\\u003EAeroparque\\u003C\\u"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "a las ventas (Paraguay)\",\"HW\":\"Tarifa Unificada de Uso de Aeropuerto (Perú)\"}},\"promo_code\":\"código de promoción\",\"protected_data\":\"Tu privacidad es importante. Todo"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\",\"HW\":\"Tarifa Unificada de Uso de Aeropuerto (Perú)\"}},\"promo_code\":\"código de promoción\",\"protected_data\":\"Tu privacidad es importante. Todos los datos de tu compr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ed\":\"Este voucher ya fue aplicado\",\"amount\":\"Monto\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subt"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "cado\",\"amount\":\"Monto\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código pro"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "o a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tengo un Código Promocional\",\"subtitle\":\"Si tenés un código promocional de Flybondi, ingresalo para r"
+            }
+          ],
+          "priority": "HIGH"
+        },
+        {
+          "type": "HIDDEN_ENDPOINT",
+          "url": "https://static.flybondi.com/f/77475/x/16b71d25d7/argentina-flag.svg",
+          "priority": "MEDIUM"
+        },
+        {
+          "type": "HIDDEN_ENDPOINT",
+          "url": "https://static.flybondi.com/f/77475/x/150be56c97/brasil-flag.svg",
+          "priority": "MEDIUM"
+        },
+        {
+          "type": "HIDDEN_ENDPOINT",
+          "url": "https://static.flybondi.com/f/77475/x/172c36c80e/paraguay-flag.svg",
+          "priority": "MEDIUM"
+        },
+        {
+          "type": "TOKEN_EXPOSED",
+          "key": "token",
+          "value_preview": "ca276228b798400599fa8c74cf5e1d8e",
+          "priority": "HIGH"
+        },
+        {
+          "type": "METADATA",
+          "meta_type": "APP_VERSION",
+          "value": "2024.11.0",
+          "priority": "LOW"
+        }
+      ],
+      "html_size": 1535607,
+      "html_hash": "09dce9cef63e30ab9927066a3a5eea23"
+    },
+    {
+      "name": "home_br",
+      "url": "https://flybondi.com/br",
+      "description": "Home Brasil",
+      "status_code": 200,
+      "timestamp": "2026-02-16T20:13:42.069652",
+      "findings": [
+        {
+          "type": "INLINE_SCRIPT",
+          "script_length": 1222521,
+          "matched_keywords": [
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": "ero de {{length}} dígitos no verso\",\"name_helper\":\"Como aparece no seu cartão\",\"debug\":{\"charging_card\":\"Gerando transação\",\"charging_card_error\":\"Houve um erro ao g"
+            },
+            {
+              "keyword": "debug",
+              "priority": "high_priority",
+              "context": ":\"Não há mais passageiros disponíveis que atendam às condições da pesquisa.\"}},\"debug\":{\"sending_details\":\"Enviando dados dos passageiros\",\"sending_details_error\":\"A"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "em\"},\"UA_INSURANCE_BASIC\":{\"title\":\"Cobertura Básica\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"descri"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ca\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"description\":\"Assistência médica até AR$ 180.000 (COVID-"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "lse}]},\"UA_INSURANCE_FULL\":{\"title\":\"Cobertura Total\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"descri"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "al\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"description\":\"Assistência médica até AR$ 480.000 (COVID-"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ESTIC_BASIC\":{\"title\":\"Básico Nacional\",\"subtitle\":\"\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"descri"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": ":\"\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"description\":\"Assistência médica em caso de doença ou ac"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "DOMESTIC_FULL\":{\"title\":\"Full Nacional\",\"subtitle\":\"\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"descri"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": ":\"\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"description\":\"Assistência médica em caso de doença ou ac"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "e\":\"Básico Internacional\",\"subtitle\":\"(Com franquia)\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"descri"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "a)\",\"highlightedTitle\":\"PREÇO PROMOCIONAL\",\"highlightedAndSelectedTitle\":\"PREÇO PROMOCIONAL\",\"conditions\":[{\"description\":\"Assistência médica em caso de doença ou ac"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "\"tag-src\":{\"NEW\":\"\\u002Ff\\u002F77475\\u002Fx\\u002Fda2fe5e4a5\\u002Fnovo-bra.svg\",\"PROMO\":\"\\u002Ff\\u002F77475\\u002Fx\\u002F79d2c67a99\\u002Fpromo-eng-bra.svg\"},\"switch\":\""
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "e4a5\\u002Fnovo-bra.svg\",\"PROMO\":\"\\u002Ff\\u002F77475\\u002Fx\\u002F79d2c67a99\\u002Fpromo-eng-bra.svg\"},\"switch\":\"Mesma seleção ida e volta\",\"alert\":\"Foi atingido o máxi"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "sobre Vendas (Paraguai)\",\"HW\":\"Tarifa Unificada de Uso de Aeroporto (Peru)\"}},\"promo_code\":\"código de promoção\",\"protected_data\":\"Sua privacidade é importante. Todo"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": ")\",\"HW\":\"Tarifa Unificada de Uso de Aeroporto (Peru)\"}},\"promo_code\":\"código de promoção\",\"protected_data\":\"Sua privacidade é importante. Todos os dados de sua compr"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "ed\":\"Este voucher já foi aplicado\",\"amount\":\"Valor\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tenho um Código Promocional\",\"subt"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "cado\",\"amount\":\"Valor\",\"balance\":\"Saldo a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tenho um Código Promocional\",\"subtitle\":\"Se você possui um códi"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "o a favor\"},\"promoCode\":{\"string\":\"Código promocional\",\"title\":\"Tenho um Código Promocional\",\"subtitle\":\"Se você possui um código promocional Flybondi, ingresse-o pa"
+            },
+            {
+              "keyword": "promo",
+              "priority": "high_priority",
+              "context": "nal\",\"title\":\"Tenho um Código Promocional\",\"subtitle\":\"Se você possui um código promocional Flybondi, ingresse-o para receber o desconto.\",\"code\":\"Código\",\"button\":\""
+            }
+          ],
+          "priority": "HIGH"
+        },
+        {
+          "type": "HIDDEN_ENDPOINT",
+          "url": "https://static.flybondi.com/f/77475/x/16b71d25d7/argentina-flag.svg",
+          "priority": "MEDIUM"
+        },
+        {
+          "type": "HIDDEN_ENDPOINT",
+          "url": "https://static.flybondi.com/f/77475/x/150be56c97/brasil-flag.svg",
+          "priority": "MEDIUM"
+        },
+        {
+          "type": "HIDDEN_ENDPOINT",
+          "url": "https://static.flybondi.com/f/77475/x/172c36c80e/paraguay-flag.svg",
+          "priority": "MEDIUM"
+        },
+        {
+          "type": "TOKEN_EXPOSED",
+          "key": "token",
+          "value_preview": "ca276228b798400599fa8c74cf5e1d8e",
+          "priority": "HIGH"
+        },
+        {
+          "type": "METADATA",
+          "meta_type": "APP_VERSION",
+          "value": "2024.11.0",
+          "priority": "LOW"
+        }
+      ],
+      "html_size": 1483735,
+      "html_hash": "786b7e09a43df0b1e8d6f196452e81e2"
+    }
+  ],
+  "total_findings": 18,
+  "high_priority": 8,
+  "medium_priority": 6,
+  "low_priority": 4
+}
