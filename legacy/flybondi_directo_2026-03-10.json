@@ -1,9 +1,0 @@
-{
-  "origen": "BUE",
-  "destino": "FLN",
-  "fecha_ida": "2026-03-10",
-  "fecha_vuelta": "2026-03-20",
-  "precio_minimo": 2000.0,
-  "moneda": "ARS",
-  "timestamp": 1771295341.624792
-}
