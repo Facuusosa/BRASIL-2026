@@ -15,60 +15,65 @@ COLUMNAS_COMPETENCIA = [
 ]
 
 def cargar_datos(file_path):
-    print(f"🚀 Iniciando HunterPrice Engine v1.0...")
+    print(f"🚀 Iniciando HunterPrice Engine v3.0 (Vertical SAP Mode)...")
     print(f"📂 Leyendo archivo maestro: {file_path}")
     
     try:
-        # Leemos detectando el encabezado en la fila 4 (0-indexed es 4)
-        df = pd.read_excel(file_path, sheet_name='Hoja1', header=4)
+        xls = pd.ExcelFile(file_path)
+        sheet_name = 'SAP Document Export' if 'SAP Document Export' in xls.sheet_names else xls.sheet_names[0]
+        df_raw = pd.read_excel(file_path, sheet_name=sheet_name)
         
-        # Normalización básica de columnas
-        df.columns = [str(col).strip() for col in df.columns]
-        print(f"📋 Columnas encontradas: {df.columns.tolist()}")
-
-        # Identificar columna de Descripción
-        col_desc = next((col for col in df.columns if 'descripci' in col.lower()), None)
-        if col_desc:
-            print(f"✅ Columna de descripción detectada: '{col_desc}'")
-            df.rename(columns={col_desc: 'Descripción'}, inplace=True)
-        else:
-            print("❌ ALERTA: No se encontró columna de Descripción exacta.")
-
+        # Normalización de columnas de SAP
+        col_mapping = {
+            'COMPETIDOR': 'Competidor',
+            'Material': 'Material',
+            'Descripción de Material': 'Descripción',
+            'Tipo de lista de precios': 'Tipo',
+            'Descripción Grupo Articulo': 'Rubro',
+            'Precio': 'Precio'
+        }
+        df_raw.rename(columns=col_mapping, inplace=True)
         
-        # Identificar columnas de competidores presentes
-        competidores_encontrados = [col for col in df.columns if col in COLUMNAS_COMPETENCIA or col.upper() in COLUMNAS_COMPETENCIA]
-        
-        print(f"✅ Competidores detectados: {competidores_encontrados}")
-        
-        return df, competidores_encontrados
+        print(f"✅ Filas crudas procesadas: {len(df_raw)}")
+        return df_raw
     
     except Exception as e:
         print(f"❌ Error crítico cargando archivo: {e}")
-        return None, []
+        return None
 
-def limpiar_datos(df, competidores):
-    print("🧹 Ejecutando Pipeline de Limpieza Profunda...")
+def limpiar_y_pivotar(df):
+    print("🧹 Ejecutando Pipeline de Limpieza y Pivotado Vertical...")
     
-    # 1. Eliminar filas vacías clave
-    df = df.dropna(subset=['Material', 'Descripción'])
-    
-    # 2. Integridad de Material (SKU)
+    # 1. Limpieza básica
+    df = df.dropna(subset=['Material', 'Descripción', 'Precio']).copy()
     df['Material'] = df['Material'].astype(str).str.replace(r'\.0$', '', regex=True)
-    
-    # 3. Normalización de Texto
     df['Descripcion_Norm'] = df['Descripción'].astype(str).str.upper().str.strip()
     
-    # Reemplazos comunes de unidades
-    reemplazos = {
-        '1.5 L': ' 1.5L ', '1.5L': ' 1.5L ', '1500 ML': ' 1.5L ', '1500ML': ' 1.5L ',
-        'CC': ' ML ', 'GRS': ' GR ', 'X 1 U': ''
-    }
-    for k, v in reemplazos.items():
-        df['Descripcion_Norm'] = df['Descripcion_Norm'].str.replace(k, v)
-        
-    df['Descripcion_Norm'] = df['Descripcion_Norm'].str.replace(r'\s+', ' ', regex=True).str.strip()
+    # 2. Manejo de duplicados (Mismos precios para mismo competidor/material)
+    # Si hay Oferta y Lista, nos quedamos con el mejor precio por cada competidor para ese producto
+    idx_min = df.groupby(['Material', 'Competidor'])['Precio'].idxmin()
+    df_min = df.loc[idx_min].copy()
     
-    return df
+    # Marcamos si es oferta en una columna aparte antes de pivotar
+    # Para saber después en el dashboard si el ganador tiene oferta
+    
+    # 3. Pivotado: Productos en filas, Competidores en columnas
+    print("🔄 Transformando datos verticales a matriz de mercado...")
+    df_pivot = df_min.pivot(index=['Material', 'Descripcion_Norm', 'Rubro'], 
+                            columns='Competidor', 
+                            values='Precio')
+    
+    # Reset index para volver a tener columnas de material/descripcion
+    df_pivot = df_pivot.reset_index()
+    
+    # Obtener lista de competidores dinámicamente
+    competidores = [c for c in df_pivot.columns if c not in ['Material', 'Descripcion_Norm', 'Rubro']]
+    
+    # Crear un mapeo de 'Material' -> {'Competidor': 'Tipo'} para saber si el precio es OFERTA
+    print("🏷️ Mapeando tipos de precios (Oferta/Lista)...")
+    tipo_mapping = df_min.set_index(['Material', 'Competidor'])['Tipo'].to_dict()
+    
+    return df_pivot, competidores, tipo_mapping
 
     return df
 
@@ -117,12 +122,13 @@ def generar_html_premium(df, competidores_cols):
     df_html_export = df_html_export.fillna(0)
     
     # Columnas a exportar: Metadata + Competidores
-    cols_export = ['Descripcion_Norm', 'Precio_Minimo', 'Precio_Promedio', 'Ganador', 'Ahorro_Pct', 'Ahorro_Abs'] + competidores_cols
+    cols_export = ['Material', 'Descripcion_Norm', 'Rubro', 'Precio_Minimo', 'Precio_Promedio', 'Ganador', 'Ahorro_Pct', 'Ahorro_Abs', 'Tipo_Ganador'] + competidores_cols
     
     data_js = df_html_export[cols_export].to_dict(orient='records')
     import json
     json_data = json.dumps(data_js)
     competidores_json = json.dumps(competidores_cols)
+    rubros_json = json.dumps(sorted(df_html_export['Rubro'].unique().tolist()))
     
     html_template = f"""
 <!DOCTYPE html>
@@ -130,359 +136,222 @@ def generar_html_premium(df, competidores_cols):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HunterPrice AI | Market Intelligence</title>
-    <!-- Fuente Inter para look profesional -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>HunterPrice AI | Control Panel V3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {{
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --bg-header: #1e293b;
+            --bg-body: #0a0f1d;
+            --bg-card: #161e31;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-primary: #3b82f6; /* Blue 500 */
-            --accent-success: #22c55e; /* Green 500 */
-            --accent-warning: #eab308; /* Yellow 500 */
-            --border-color: #334155;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #2d3748;
         }}
         
-        * {{ box-sizing: border-box; }}
-        
-        body {{ 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-body); 
-            color: var(--text-main); 
-            margin: 0; 
-            padding-bottom: 50px;
-        }}
+        * {{ box-sizing: border-box; font-family: 'Inter', sans-serif; }}
+        body {{ background-color: var(--bg-body); color: var(--text-main); margin: 0; }}
 
-        /* Header Profesional */
-        .navbar {{
-            background-color: var(--bg-header);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        .navbar {{ 
+            background: #111827; 
+            padding: 1rem 2rem; 
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
         }}
-        
-        .brand {{ 
-            font-weight: 800; 
-            font-size: 1.5rem; 
-            letter-spacing: -0.05em;
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }}
+        .brand {{ font-weight: 800; font-size: 1.25rem; color: var(--accent); }}
+        .badge-count {{ background: var(--accent); padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; }}
 
-        /* Contenedor Principal */
-        .container {{
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }}
+        .container {{ padding: 2rem; max-width: 1400px; margin: 0 auto; }}
 
-        /* Buscador */
-        .search-wrapper {{
-            margin: 30px 0;
-            position: relative;
+        /* Filters Bar */
+        .controls {{ 
+            display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;
+            background: var(--bg-card); padding: 1rem; border-radius: 12px; border: 1px solid var(--border);
         }}
-        .search-input {{
-            width: 100%;
-            padding: 16px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: white;
-            font-size: 1.1rem;
-            transition: all 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        .search-box {{ flex-grow: 1; min-width: 300px; position: relative; }}
+        input, select {{
+            width: 100%; background: #0f172a; border: 1px solid var(--border);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.95rem;
         }}
-        .search-input:focus {{
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }}
+        input:focus {{ outline: none; border-color: var(--accent); }}
 
-        /* Grid de Resultados */
-        .results-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+        /* Data Table */
+        .table-container {{ 
+            background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border);
+            overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5);
         }}
+        table {{ width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }}
+        th {{ background: #1f2937; padding: 14px 16px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }}
+        td {{ padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }}
+        tr:hover {{ background: rgba(255,255,255,0.03); }}
 
-        /* Tarjeta de Producto */
-        .product-card {{
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-        }}
-        .product-card:hover {{
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            border-color: var(--text-muted);
-        }}
+        .row-main {{ cursor: pointer; }}
+        .row-detail {{ display: none; background: #0f172a; }}
+        .row-detail.active {{ display: table-row; }}
 
-        .card-header {{
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }}
+        .price-best {{ color: var(--success); font-weight: 700; font-size: 1.1rem; }}
+        .badge-pill {{ padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; }}
+        .bg-offer {{ background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }}
+        .bg-saving {{ background: rgba(16, 185, 129, 0.2); color: var(--success); }}
 
-        .product-title {{
-            font-size: 1.1rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--text-main);
-            margin-bottom: 10px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 3.1em;
-        }}
+        /* Detailed Matrix */
+        .matrix-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; padding: 20px; }}
+        .matrix-item {{ background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid var(--border); }}
+        .matrix-label {{ font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }}
+        .matrix-value {{ font-weight: 600; font-size: 0.95rem; }}
+        .is-winner {{ border-color: var(--success); background: rgba(16, 185, 129, 0.05); }}
 
-        .badges {{ display: flex; gap: 8px; flex-wrap: wrap; }}
-        
-        .badge {{
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 9999px;
-            font-weight: 600;
-            text-transform: uppercase;
+        @media (max-width: 768px) {{
+            th:nth-child(3), td:nth-child(3), th:nth-child(5), td:nth-child(5) {{ display: none; }}
         }}
-        .badge-winner {{ background: rgba(34, 197, 94, 0.15); color: var(--accent-success); border: 1px solid rgba(34, 197, 94, 0.3); }}
-        .badge-saving {{ background: rgba(234, 179, 8, 0.15); color: var(--accent-warning); border: 1px solid rgba(234, 179, 8, 0.3); }}
-
-        .card-body {{
-            padding: 20px;
-            flex-grow: 1;
-        }}
-
-        .price-section {{
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 20px;
-        }}
-        
-        .main-price {{ font-size: 2rem; font-weight: 800; color: white; letter-spacing: -1px; line-height: 1; }}
-        .main-price small {{ font-size: 0.9rem; font-weight: 400; color: var(--text-muted); display: block; margin-top: 5px; }}
-        
-        .avg-price {{ text-align: right; }}
-        .avg-label {{ font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }}
-        .avg-value {{ font-size: 1.1rem; color: var(--text-muted); text-decoration: line-through; }}
-
-        /* Tabla Comparativa Desplegable */
-        .market-table-container {{
-            background: #0f172a;
-            margin: 0 -20px -20px -20px;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            border-top: 1px solid var(--border-color);
-        }}
-        
-        .product-card.active .market-table-container {{
-            max-height: 500px; /* Suficiente para mostrar competidores */
-            overflow-y: auto;
-        }}
-
-        .market-table {{
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }}
-        
-        .market-table th, .market-table td {{
-            padding: 10px 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }}
-        
-        .market-table th {{ color: var(--text-muted); font-weight: 600; background: #162032; position: sticky; top: 0; }}
-        .market-table td {{ color: var(--text-main); }}
-        
-        .toggle-btn {{
-            background: transparent;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            color: var(--accent-primary);
-            font-weight: 600;
-            cursor: pointer;
-            border-top: 1px solid var(--border-color);
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }}
-        .toggle-btn:hover {{ background: rgba(59, 130, 246, 0.1); }}
-
-        /* Utilidades */
-        .text-success {{ color: var(--accent-success); }}
-        .text-danger {{ color: var(--danger); }}
-        .hidden {{ display: none; }}
-
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="brand">HunterPrice AI</div>
-    </nav>
+<nav class="navbar">
+    <div class="brand">HunterPrice <span style="color:white">AI Control Panel</span></div>
+    <div class="badge-count">V3.0 Professional</div>
+</nav>
 
-    <div class="container">
-        
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar producto, marca o código..." onkeyup="filterProducts()">
+<div class="container">
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="q" placeholder="🔍 Buscar producto, marca o rubro..." onkeyup="app.filter()">
         </div>
-
-        <div id="stats" style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.9rem;">
-            Mostrando <span id="count" style="color: white; font-weight: bold;">0</span> oportunidades de mercado.
-        </div>
-
-        <div class="results-grid" id="productGrid">
-            <!-- JS Injection -->
+        <div style="width: 250px;">
+            <select id="rubroFilter" onchange="app.filter()">
+                <option value="">Todos los Rubros</option>
+                <!-- JS Inject -->
+            </select>
         </div>
     </div>
 
-    <script>
-        const products = {json_data};
-        const competitors = {competidores_json};
+    <div class="table-container">
+        <table id="mainTable">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Rubro</th>
+                    <th>Mejor Precio</th>
+                    <th>Ganador</th>
+                    <th>Ahorro</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- JS Inject -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-        // Formateador de moneda
-        const fmtMoney = (amount) => {{
-            if (!amount || amount <= 0) return '-';
-            return new Intl.NumberFormat('es-AR', {{ style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }}).format(amount);
-        }};
+<script>
+const app = {{
+    data: {json_data},
+    rubros: {rubros_json},
+    competitors: {competidores_json},
+    
+    init() {{
+        const select = document.getElementById('rubroFilter');
+        this.rubros.forEach(r => {{
+            const opt = document.createElement('option');
+            opt.value = opt.innerText = r;
+            select.appendChild(opt);
+        }});
+        this.render(this.data);
+    }},
 
-        function renderProducts(data) {{
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-            document.getElementById('count').innerText = data.length;
+    fmt(n) {{
+        return new Intl.NumberFormat('es-AR', {{ style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }}).format(n);
+    }},
 
-            // Renderizar máximo 100 para no saturar DOM en móvil, scroll infinito sería ideal para V2
-            const displayData = data.slice(0, 100);
+    render(list) {{
+        const body = document.getElementById('tableBody');
+        body.innerHTML = '';
+        
+        list.slice(0, 300).forEach((p, i) => {{
+            const tr = document.createElement('tr');
+            tr.className = 'row-main';
+            tr.onclick = () => this.toggle(i);
+            
+            const isOffer = p.Tipo_Ganador === 'OFERTA';
+            const offerBadge = isOffer ? '<span class="badge-pill bg-offer">OFERTA</span>' : '';
+            
+            tr.innerHTML = `
+                <td>
+                    <div style="font-weight:600; color:white">${{p.Descripcion_Norm}}</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted)">SKU: ${{p.Material}}</div>
+                </td>
+                <td><span style="color:var(--text-muted)">${{p.Rubro}}</span></td>
+                <td>
+                    <div class="price-best" style="${{isOffer ? 'color:var(--warning)' : ''}}">
+                        ${{this.fmt(p.Precio_Minimo)}}
+                    </div>
+                </td>
+                <td><span style="font-weight:500">${{p.Ganador}}</span></td>
+                <td><span class="badge-pill bg-saving">-${{p.Ahorro_Pct.toFixed(1)}}%</span></td>
+                <td>${{offerBadge}}</td>
+            `;
 
-            displayData.forEach((p, index) => {{
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.id = `card-${{index}}`;
-
-                // Generar filas de tabla
-                let tableRows = '';
-                competitors.forEach(comp => {{
-                    const price = p[comp];
-                    const isWinner = price === p.Precio_Minimo && price > 0;
-                    const rowClass = isWinner ? 'background: rgba(34, 197, 94, 0.1);' : '';
-                    const priceClass = isWinner ? 'color: var(--accent-success); font-weight: bold;' : '';
-                    
-                    if (price > 0) {{ // Solo mostrar si tiene precio
-                        tableRows += `
-                            <tr style="${{rowClass}}">
-                                <td>${{comp}}</td>
-                                <td style="${{priceClass}} text-align: right;">${{fmtMoney(price)}}</td>
-                            </tr>
-                        `;
-                    }}
-                }});
-
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="product-title">${{p.Descripcion_Norm}}</div>
-                        <div class="badges">
-                            <span class="badge badge-winner">🏆 ${{p.Ganador}}</span>
-                            <span class="badge badge-saving">📉 -${{p.Ahorro_Pct.toFixed(0)}}%</span>
+            const detail = document.createElement('tr');
+            detail.className = 'row-detail';
+            detail.id = 'detail-' + i;
+            
+            let matrixHtml = '';
+            this.competitors.forEach(c => {{
+                if(p[c] > 0) {{
+                    const win = p[c] === p.Precio_Minimo;
+                    matrixHtml += `
+                        <div class="matrix-item ${{win ? 'is-winner' : ''}}">
+                            <div class="matrix-label">${{c}}</div>
+                            <div class="matrix-value" style="${{win ? 'color:var(--success)' : ''}}">${{this.fmt(p[c])}}</div>
                         </div>
-                    </div>
-                    
-                    <div class="card-body">
-                        <div class="price-section">
-                            <div class="main-price">
-                                ${{fmtMoney(p.Precio_Minimo)}}
-                                <small>Mejor Precio Detectado</small>
-                            </div>
-                            <div class="avg-price">
-                                <div class="avg-label">Promedio Mercado</div>
-                                <div class="avg-value">${{fmtMoney(p.Precio_Promedio)}}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="toggle-btn" onclick="toggleDetails(${{index}})">
-                        📊 Ver Comparativa de Mercado Completa
-                    </button>
-
-                    <div class="market-table-container">
-                        <table class="market-table">
-                            <thead>
-                                <tr>
-                                    <th>Competidor</th>
-                                    <th style="text-align: right;">Precio Lista</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${{tableRows}}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-                grid.appendChild(card);
+                    `;
+                }}
             }});
-        }}
 
-        function toggleDetails(index) {{
-            const card = document.getElementById(`card-${{index}}`);
-            card.classList.toggle('active');
-            const btn = card.querySelector('.toggle-btn');
-            if (card.classList.contains('active')) {{
-                btn.innerHTML = '🔼 Ocultar Detalle';
-                btn.style.borderTopColor = 'transparent';
-            }} else {{
-                btn.innerHTML = '📊 Ver Comparativa de Mercado Completa';
-                btn.style.borderTopColor = '#334155';
-            }}
-        }}
+            detail.innerHTML = `<td colspan="6"><div class="matrix-grid">${{matrixHtml}}</div></td>`;
+            
+            body.appendChild(tr);
+            body.appendChild(detail);
+        }});
+    }},
 
-        function filterProducts() {{
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = products.filter(p => 
-                p.Descripcion_Norm.toLowerCase().includes(query) || 
-                p.Ganador.toLowerCase().includes(query)
-            );
-            renderProducts(filtered);
-        }}
+    toggle(i) {{
+        document.getElementById('detail-'+i).classList.toggle('active');
+    }},
 
-        // Inicializar
-        renderProducts(products);
-    </script>
+    filter() {{
+        const q = document.getElementById('q').value.toLowerCase();
+        const r = document.getElementById('rubroFilter').value;
+        
+        const filtered = this.data.filter(p => {{
+            const matchQ = p.Descripcion_Norm.toLowerCase().includes(q) || p.Material.includes(q);
+            const matchR = r === "" || p.Rubro === r;
+            return matchQ && matchR;
+        }});
+        this.render(filtered);
+    }}
+}};
+
+app.init();
+</script>
 </body>
 </html>
     """
     
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
         f.write(html_template)
-    print(f"✅ Dashboard HTML Premium V2 generado exitosamente: {OUTPUT_HTML}")
+    print(f"✅ Dashboard HTML Premium V3 (Control Panel) generado: {OUTPUT_HTML}")
 
 
-def analizar_mercado(df, competidores):
+def analizar_mercado(df, competidores, tipo_mapping):
     print("🧠 Ejecutando Análisis de Inteligencia de Mercado...")
     
     df = df.copy() # Evitar SettingWithCopyWarning
-    
-    # Convertir precios a numérico (forzando errores a NaN)
-    for col in competidores:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
     
     # Calcular métricas por fila
     df['Precio_Minimo'] = df[competidores].min(axis=1)
@@ -491,21 +360,29 @@ def analizar_mercado(df, competidores):
     df['Competidores_Activos'] = df[competidores].count(axis=1)
     
     # Identificar al ganador (quién tiene el mínimo)
-    def encontrar_ganador(row):
+    def encontrar_ganador_y_tipo(row):
         min_val = row['Precio_Minimo']
         if pd.isna(min_val):
-            return "N/A"
+            return "N/A", "LISTA"
+        
+        # Encontrar competidores que tienen el precio mínimo
         ganadores = [comp for comp in competidores if row[comp] == min_val]
-        return ", ".join(ganadores)
+        ganador_principal = ganadores[0]
+        
+        # Buscar el tipo (OFERTA/LISTA) en el mapping
+        material = row['Material']
+        tipo = tipo_mapping.get((material, ganador_principal), "LISTA")
+        
+        return ", ".join(ganadores), tipo
 
-    df['Ganador'] = df.apply(encontrar_ganador, axis=1)
+    res = df.apply(encontrar_ganador_y_tipo, axis=1)
+    df['Ganador'] = [r[0] for r in res]
+    df['Tipo_Ganador'] = [r[1] for r in res]
     
     # Calcular Ahorro Potencial (vs Promedio)
     df['Ahorro_Pct'] = ((df['Precio_Promedio'] - df['Precio_Minimo']) / df['Precio_Promedio']) * 100
     df['Ahorro_Abs'] = df['Precio_Promedio'] - df['Precio_Minimo']
     
-    return df
-
     return df
 
 def generar_reporte_consola(df):
@@ -520,31 +397,27 @@ def generar_reporte_consola(df):
     
     print("\n🔥 TOP 10 OPORTUNIDADES DE AHORRO (Arbitraje/Flipping):")
     for idx, row in top_ahorros.iterrows():
+        tipo_str = f" [{row['Tipo_Ganador']}]" if row['Tipo_Ganador'] == "OFERTA" else ""
         print(f"- {row['Descripcion_Norm'][:40]}...")
-        print(f"  💰 Mínimo: ${row['Precio_Minimo']:,.2f} en [{row['Ganador']}]")
+        print(f"  💰 Mínimo: ${row['Precio_Minimo']:,.2f} en [{row['Ganador']}]{tipo_str}")
         print(f"  📈 Promedio: ${row['Precio_Promedio']:,.2f} | 📉 Ahorro: {row['Ahorro_Pct']:.1f}%")
         print("-" * 30)
 
-    # Detección rápida de inconsistencias
-    posibles_errores = df[df['Ahorro_Pct'] > 60]
-    if not posibles_errores.empty:
-        print(f"\n⚠️ ALERTA: {len(posibles_errores)} productos con dispersión > 60% (Posible Error o Flipping Brutal)")
-
 def main():
-    df, competidores = cargar_datos(FILE_PATH)
-    if df is not None:
+    df_raw = cargar_datos(FILE_PATH)
+    if df_raw is not None:
+        df_pivot, competidores, tipo_mapping = limpiar_y_pivotar(df_raw)
+        
         if not competidores:
-            print("⚠️ No se detectaron columnas de competidores estándar. Revisando cabeceras...")
+            print("⚠️ No se detectaron columnas de competidores. Revisando Excel...")
         else:
-            df = limpiar_datos(df, competidores)
-            df = unificar_nombres_fuzzy(df)
-            df = analizar_mercado(df, competidores)
+            df_final = analizar_mercado(df_pivot, competidores, tipo_mapping)
             
-            generar_reporte_consola(df)
-            generar_archivos_finales(df)
-            generar_html_premium(df, competidores)
+            generar_reporte_consola(df_final)
+            generar_archivos_finales(df_final)
+            generar_html_premium(df_final, competidores)
             
-            print("\n✅ CICLO COMPLETO FINALIZADO.")
+            print("\n✅ CICLO COMPLETO FINALIZADO (V3.0 Vertical).")
 
 if __name__ == "__main__":
     main()
