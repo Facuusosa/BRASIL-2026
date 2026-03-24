@@ -1,0 +1,17 @@
+Cargando diccionarios SKU -> EAN...
+Diccionarios cargados. Maxi: 6187 | Yaguar: 6160
+Cargando Master EAN...
+Master cargado con 23371 referencias.
+Procesando carrefour...
+Procesando maxiconsumo...
+Procesando yaguar...
+
+==================================================
+REPORTE DE UNIFICACIÓN FINAL
+==================================================
+Productos únicos (con EAN):    10076
+Productos con 2+ mayoristas:   1375
+Nombres limpios del Maestro:   4846
+Fotos del Maestro asignadas:   0
+Archivo guardado en: c:\Users\Facun\OneDrive\Escritorio\PROYECTOS PERSONALES\PRECIOS\BRUJULA-DE-PRECIOS\data\processed\catalogo_unificado.json
+==================================================

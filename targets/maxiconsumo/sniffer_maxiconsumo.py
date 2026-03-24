@@ -91,7 +91,7 @@ def save_data(unique_products):
 
 def scrape_page_with_pagination(base_url, sector, subcat, unique_products):
     nuevos_cat = 0
-    for pg in range(1, 11): 
+    for pg in range(1, 101): 
         url = f"{base_url}?p={pg}"
         try:
             r = requests.get(url, headers=HEADERS, timeout=15)
@@ -104,15 +104,30 @@ def scrape_page_with_pagination(base_url, sector, subcat, unique_products):
                 name_elem = item.select_one(".product-item-name a")
                 if not name_elem: continue
                 nombre = name_elem.get_text(strip=True)
-                price_elem = item.select_one(".price")
-                precio = clean_price(price_elem.get_text(strip=True) if price_elem else "")
+                # FIX 4: Capturar precio unitario real (evitar bulto cerrado)
+                # Maxiconsumo suele tener IDs que empiezan con 'price-including-tax-' para la unidad
+                # y 'highest-price-including-tax-' para el bulto.
+                price_elem = item.select_one('span[id^="price-including-tax-"] .price')
+                
+                # Fallback por si el selector anterior falla
+                if not price_elem:
+                    price_elem = item.select_one(".price")
+                
+                precio_raw = price_elem.get_text(strip=True) if price_elem else ""
+                precio = clean_price(precio_raw)
+                
                 item_text = item.get_text(separator=' ', strip=True)
                 sku_match = re.search(r'SKU\s+(\d+)', item_text, re.IGNORECASE)
                 sku = sku_match.group(1) if sku_match else ""
                 if not sku: continue
+                
                 img_elem = item.select_one("img.product-image-photo")
                 img_url = img_elem.get("src") if img_elem else ""
                 stock = bool(re.search(r'En stock', item_text, re.IGNORECASE))
+                
+                # Ignorar si no hay precio real o no hay stock (según preferencia de limpieza)
+                if precio <= 0 or not stock:
+                    continue
                 
                 if sku not in unique_products:
                     unique_products[sku] = {

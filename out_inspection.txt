@@ -1,0 +1,16 @@
+Sheets: ['DIARCO', 'YAGUAR', 'MAXICONSUMO']
+
+--- DIARCO ---
+['Material', 'Art', 'Nombre', 'Ean 13', 'Material.1', 'Descripción del Material']
+   Material    Art                      Nombre         Ean 13  Material.1   Descripción del Material
+0    100001  30257  Aceite Arcor Maiz x 900 ml  7790580160807      100001  Aceite maiz ARCOR x 900ml
+
+--- YAGUAR ---
+['MATERIAL', 'SKU YAGUAR', 'ean', 'MATERIAL.1', 'DESCRIPCION']
+   MATERIAL  SKU YAGUAR       ean  MATERIAL.1 DESCRIPCION
+0    178221       78820  77976291      178221      (BAJA)
+
+--- MAXICONSUMO ---
+['Material', 'SKU', 'Descripción', 'Código de barras', 'Material.1', 'Descripción del Material']
+   Material    SKU                               Descripción  Código de barras  Material.1                  Descripción del Material
+0    152601  20508  YOGHURT L.SERENIS. DESLAC.FR 900 gr          7791337651517      152601  Yogur YOGURISIMO vainilla sachet x(BAJA)
