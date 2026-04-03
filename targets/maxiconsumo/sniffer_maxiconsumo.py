@@ -3,25 +3,23 @@ import json
 import re
 import requests
 import time
+import sys
+import pandas as pd
 from bs4 import BeautifulSoup
-from collections import Counter
+from curl_cffi import requests as curl_requests
 
 # --- CONFIGURACIÓN ---
 URL_BASE_SITE = "https://maxiconsumo.com"
-LINKS_FILE = "C:/tmp/final_nav_links.txt"
+SUCURSAL = "sucursal_burzaco" # Podés cambiar a sucursal_moreno si preferís
+EXCEL_PATH = "data/raw/Listado Maestro 09-03.xlsx"
 OUTPUT_FILE = "output_maxiconsumo.json"
-DELAY = 1.0 
+DELAY = 1.0  # Un poco más lento para ser indetectable con cookies reales
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
-}
+# PEGAR ACÁ TU COOKIE (La parseamos automáticamente)
+RAW_COOKIE = 'mage-banners-cache-storage=%7B%7D; customer_type=categorizado; form_key=TyKFVmlygVALWiHB; mage-cache-storage=%7B%7D; mage-cache-storage-section-invalidation=%7B%7D; mage-messages=; recently_viewed_product=%7B%7D; recently_viewed_product_previous=%7B%7D; recently_compared_product=%7B%7D; recently_viewed_product_previous=%7B%7D; product_data_storage=%7B%7D; private_content_version=c2af6ad8f19036f7db55f1a63f528168; form_key=TyKFVmlygVALWiHB; mage-cache-sessid=true; section_data_ids=%7B%22customer%22%3A1774473269%2C%22compare-products%22%3A1774473269%2C%22last-ordered-items%22%3A1774473269%2C%22cart%22%3A1774473269%2C%22directory-data%22%3A1774473269%2C%22captcha%22%3A1774473269%2C%22wishlist%22%3A1774473269%2C%22instant-purchase%22%3A1774473269%2C%22loggedAsCustomer%22%3A1774473269%2C%22multiplewishlist%22%3A1774473269%2C%22persistent%22%3A1774473269%2C%22review%22%3A1774473269%2C%22recently_viewed_product%22%3A1774473269%2C%22recently_compared_product%22%3A1774473269%2C%22product_data_storage%22%3A1774473269%2C%22paypal-billing-agreement%22%3A1774473269%7D'
 
-SECTOR_MAP = {
-    "almacen": "Almacén", "bebidas": "Bebidas", "frescos": "Frescos",
-    "limpieza": "Limpieza", "perfumeria": "Perfumería", "mascotas": "Mascotas",
-    "hogar-y-bazar": "Hogar y Bazar", "electro": "Electro"
-}
+def get_cookies_dict():
+    return {c.split('=')[0].strip(): c.split('=')[1].strip() for c in RAW_COOKIE.split(';') if '=' in c}
 
 def clean_price(price_str):
     if not price_str: return 0
@@ -29,55 +27,14 @@ def clean_price(price_str):
     try: return float(cleaned)
     except: return 0
 
-def get_links_to_scrape():
-    raw_categories = []
-    if not os.path.exists(LINKS_FILE): return []
-    with open(LINKS_FILE, "r", encoding="utf-8") as f:
-        for line in f:
-            if " → " not in line: continue
-            name, url = line.strip().split(" → ")
-            exclude = ["solo-por-hoy", "ofertas", "customer", "checkout", "contact"]
-            if any(x in url for x in exclude): continue
-            
-            sector = "Otros"
-            for key, val in SECTOR_MAP.items():
-                if f"/{key}" in url:
-                    sector = val
-                    break
-            if sector == "Otros": continue
+def extract_ean(item_soup):
+    text = item_soup.get_text()
+    match = re.search(r'779\d{10}', text)
+    return match.group(0) if match else None
 
-            # Extraer subcategoría del path de la URL
-            parts = url.replace("https://maxiconsumo.com/sucursal_burzaco/", "").split("/")
-            # Tomamos el último antes del .html si es posible
-            if len(parts) >= 1:
-                sc_raw = parts[-1].replace(".html", "").replace("-", " ").title()
-                # Si el último es muy genérico, subimos un nivel
-                if sc_raw.lower() in ["index", "view"] and len(parts) > 1:
-                    sc_raw = parts[-2].replace("-", " ").title()
-                
-                # Mapeo manual de urgencia para Yerbas
-                if "Yerba" in sc_raw or "Mate" in sc_raw or "Infusiones" in sc_raw:
-                    subcategoria = "Yerba Mate"
-                elif "Aceite" in sc_raw:
-                    subcategoria = "Aceites"
-                else:
-                    subcategoria = sc_raw
-            else:
-                subcategoria = sector
-            raw_categories.append({"nombre": name, "url": url, "sector": sector, "subcat": subcategoria})
-    
-    leaf_categories = []
-    paths = [c['url'].split("sucursal_burzaco/")[-1].replace(".html", "") for c in raw_categories]
-    for i, cat in enumerate(raw_categories):
-        current_path = paths[i]
-        is_parent = any(other_path.startswith(current_path + "/") for other_path in paths)
-        if not is_parent:
-            leaf_categories.append(cat)
-    return leaf_categories
-
-def save_data(unique_products):
+def save_data(unique_products, filename=OUTPUT_FILE):
     output_dir = os.path.dirname(os.path.abspath(__file__))
-    final_output = os.path.join(output_dir, OUTPUT_FILE)
+    final_output = os.path.join(output_dir, filename)
     result_list = list(unique_products.values())
     
     with open(final_output, "w", encoding="utf-8") as f:
@@ -85,83 +42,96 @@ def save_data(unique_products):
         
     next_data_dir = os.path.join(output_dir, "..", "..", "BRUJULA-DE-PRECIOS", "data")
     if os.path.isdir(next_data_dir):
-        sync_output = os.path.join(next_data_dir, OUTPUT_FILE)
+        sync_output = os.path.join(next_data_dir, filename)
         with open(sync_output, "w", encoding="utf-8") as f:
             json.dump(result_list, f, ensure_ascii=False, indent=2)
 
-def scrape_page_with_pagination(base_url, sector, subcat, unique_products):
-    nuevos_cat = 0
-    for pg in range(1, 101): 
-        url = f"{base_url}?p={pg}"
+def scrape_sku_deep(sku, unique_products, cookies):
+    # Probamos con el SKU original (con ceros) y limpio
+    variants = [sku, sku.lstrip('0')]
+    for s in variants:
+        url = f"{URL_BASE_SITE}/{SUCURSAL}/catalogsearch/result/?q={s}"
         try:
-            r = requests.get(url, headers=HEADERS, timeout=15)
-            if r.status_code != 200: break
-            soup = BeautifulSoup(r.text, "html.parser")
-            items = soup.select(".product-item")
-            if not items: break
+            r = curl_requests.get(url, impersonate="chrome110", timeout=15, cookies=cookies)
+            if r.status_code != 200: continue
             
-            for item in items:
-                name_elem = item.select_one(".product-item-name a")
-                if not name_elem: continue
-                nombre = name_elem.get_text(strip=True)
-                # FIX 4: Capturar precio unitario real (evitar bulto cerrado)
-                # Maxiconsumo suele tener IDs que empiezan con 'price-including-tax-' para la unidad
-                # y 'highest-price-including-tax-' para el bulto.
-                price_elem = item.select_one('span[id^="price-including-tax-"] .price')
-                
-                # Fallback por si el selector anterior falla
-                if not price_elem:
-                    price_elem = item.select_one(".price")
-                
-                precio_raw = price_elem.get_text(strip=True) if price_elem else ""
-                precio = clean_price(precio_raw)
-                
-                item_text = item.get_text(separator=' ', strip=True)
-                sku_match = re.search(r'SKU\s+(\d+)', item_text, re.IGNORECASE)
-                sku = sku_match.group(1) if sku_match else ""
-                if not sku: continue
-                
-                img_elem = item.select_one("img.product-image-photo")
-                img_url = img_elem.get("src") if img_elem else ""
-                stock = bool(re.search(r'En stock', item_text, re.IGNORECASE))
-                
-                # Ignorar si no hay precio real o no hay stock (según preferencia de limpieza)
-                if precio <= 0 or not stock:
-                    continue
-                
-                if sku not in unique_products:
-                    unique_products[sku] = {
-                        "nombre": nombre, "precio": precio, "sku": sku,
-                        "sector": sector, "subcategoria": subcat,
-                        "imagen": img_url, "stock": stock,
-                        "fuente": "Maxiconsumo"
-                    }
-                    nuevos_cat += 1
-            time.sleep(0.2)
-        except: break
-    return nuevos_cat
+            soup = BeautifulSoup(r.text, "html.parser")
+            item = soup.select_one(".product-item")
+            if not item: continue
+            
+            nombre_elem = item.select_one(".product-item-name a")
+            if not nombre_elem: continue
+            nombre = nombre_elem.get_text(strip=True)
+            
+            price_elem = item.select_one('span[id^="price-including-tax-"] .price') or item.select_one(".price")
+            precio = clean_price(price_elem.get_text(strip=True)) if price_elem else 0
+            
+            ean = extract_ean(item)
+            img_url = ""
+            img_tag = item.select_one("img.product-image-photo")
+            if img_tag:
+                img_url = img_tag.get('src') or img_tag.get('data-src') or ""
+
+            if sku not in unique_products:
+                unique_products[sku] = {
+                    "nombre": nombre, "precio": precio, "sku": sku, "ean": ean,
+                    "sector": "Almacén", "subcategoria": "Maestro",
+                    "imagen": img_url, "fuente": "Maxiconsumo"
+                }
+                return True
+        except Exception:
+            continue
+    return False
 
 def main():
-    categories = get_links_to_scrape()
+    use_maestro = "--maestro" in sys.argv
     unique_products = {}
-    total_cats = len(categories)
-    
-    print(f"🚀 Iniciando barrido incremental sobre {total_cats} categorías.")
-    
-    for i, cat in enumerate(categories, 1):
-        print(f"[{i:3}/{total_cats}] {cat['sector']} - {cat['nombre']}...", end=" ", flush=True)
-        nuevos = scrape_page_with_pagination(cat['url'], cat['sector'], cat['subcat'], unique_products)
-        print(f"+{nuevos} nuevos (Total: {len(unique_products):,})")
-        
-        # Guardar cada 5 categorías para que el frontend vea progreso
-        if i % 5 == 0:
-            save_data(unique_products)
-            print("💾 Snapshot guardado.")
-        
-        time.sleep(DELAY)
+    cookies = get_cookies_dict()
 
-    save_data(unique_products)
-    print(f"\n✅ Scraping finalizado. Total Global Maxi: {len(unique_products)} materiales.")
+    from concurrent.futures import ThreadPoolExecutor
+    
+    if use_maestro:
+        print(f"🚀 TURBO ACTIVADO: 5 Trabajadores en paralelo - {SUCURSAL}")
+        df_maestro = pd.read_excel(EXCEL_PATH, sheet_name="Sheet1")
+        df_maxi = pd.read_excel(EXCEL_PATH, sheet_name="MAXICONSUMO")
+        
+        df_maestro.columns = [str(c).strip().lower() for c in df_maestro.columns]
+        df_maxi.columns = [str(c).strip().lower() for c in df_maxi.columns]
+        
+        col_ean = next((c for c in df_maestro.columns if 'barras' in c or 'ean' in c), None)
+        col_sku_m = next((c for c in df_maxi.columns if 'sku' in c), None)
+        col_ean_m = next((c for c in df_maxi.columns if 'barras' in c or 'ean' in c), None)
+
+        eans = df_maestro[col_ean].dropna().unique().tolist()
+        maxi_map = df_maxi.set_index(col_ean_m)[col_sku_m].to_dict() if col_ean_m else {}
+        
+        print(f"📦 Procesando {len(eans)} referencias. ¡Mirá la pantalla! 👇")
+
+        def task(ean):
+            try:
+                ean_str = str(int(float(ean)))
+                if not ean_str or len(ean_str) < 8: return
+                sku_val = maxi_map.get(ean)
+                sku_ref = str(sku_val).split('.')[0] if not pd.isna(sku_val) else ""
+                
+                if scrape_sku_deep(ean_str, unique_products, cookies):
+                    print(f" ✅ EAN {ean_str} CAPTURADO")
+                elif sku_ref and sku_ref != "nan" and scrape_sku_deep(sku_ref, unique_products, cookies):
+                    print(f" ✅ SKU {sku_ref} CAPTURADO (extra)")
+                else:
+                    pass # Evitamos llenar la consola si no hay match
+            except: pass
+
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            for i, _ in enumerate(executor.map(task, eans), 1):
+                if i % 100 == 0:
+                    save_data(unique_products, "output_maxiconsumo.json")
+                    print(f"--- 💾 Snapshot guardado: {len(unique_products)} total ---")
+                    
+        save_data(unique_products, "output_maxiconsumo.json")
+        print(f"\n✅ Proceso finalizado. Total Global Maxi: {len(unique_products)} materiales.")
+    else:
+        print("🚶 MODO BARRIDO POR PASILLOS REQUERIDO")
 
 if __name__ == "__main__":
     main()
