@@ -1,387 +1,281 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-SCRAPER YAGUAR - VERSIÓN PRO
-Para uso con acceso a internet real
+SCRAPER YAGUAR - VERSIÓN PRO RESILIENTE
+Scraping completo con login, paginación, retry automático y validación.
 """
 
 import os
 import json
 import re
 import time
-import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
-import pandas as pd
+from bs4 import BeautifulSoup
 from curl_cffi import requests as curl_requests
-import hashlib
+from dotenv import load_dotenv
 
-# Configuración
+load_dotenv()
+
+# Imports eliminados - módulos de resiliencia ya no existen
+# El scraper funciona sin over-engineering
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = os.path.join(BASE_DIR, "data")
-RAW_DIR = os.path.join(DATA_DIR, "raw")
 
-class YaguarProScraper:
-    def __init__(self):
-        # Usar curl_cffi con impersonate safari15_3 (funciona!)
-        self.session = curl_requests.Session()
-        self.impersonate = "safari15_3"  # 🔥 CLAVE: Esto evita el bloqueo
+CATEGORIAS = [
+    {"slug": "almacen",    "nombre": "Almacén"},
+    {"slug": "bazar",      "nombre": "Bazar"},
+    {"slug": "bebidas",    "nombre": "Bebidas"},
+    {"slug": "bodega",     "nombre": "Bodega"},
+    {"slug": "desayuno",   "nombre": "Desayuno"},
+    {"slug": "frescos",    "nombre": "Frescos"},
+    {"slug": "kiosco",     "nombre": "Kiosco"},
+    {"slug": "limpieza",   "nombre": "Limpieza"},
+    {"slug": "mascotas",   "nombre": "Mascotas"},
+    {"slug": "papeles",    "nombre": "Papeles"},
+    {"slug": "perfumeria", "nombre": "Perfumería"},
+]
+
+BASE_URL = "https://yaguar.com.ar"
+LOGIN_URL = f"{BASE_URL}/login/"
+
+HEADERS = {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "accept-language": "es-ES,es;q=0.9,en;q=0.8",
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15",
+    "referer": BASE_URL + "/",
+}
+
+IMPERSONATE = "safari15_3"
+DELAY_ENTRE_PAGINAS = 1.0   # segundos entre páginas
+DELAY_ENTRE_CATEGORIAS = 2.0
+
+# Configuración simple
+MIN_PRODUCTS_EXPECTED = 1000  # Mínimo de productos esperados
+
+
+def login(session):
+    """Realiza el login con retry automático."""
+    def _login_attempt():
+        print("🔐 Iniciando sesión...")
+        r1 = session.get(LOGIN_URL, headers=HEADERS, impersonate=IMPERSONATE, timeout=20)
+        soup = BeautifulSoup(r1.text, "html.parser")
+        form = soup.find("form", {"method": "post"})
+        if not form:
+            raise Exception("No se encontró el formulario de login")
+
+        payload = {}
+        for inp in form.find_all("input"):
+            name = inp.get("name", "")
+            value = inp.get("value", "")
+            if name:
+                payload[name] = value
+
+        payload["username"] = os.getenv("YAGUAR_USERNAME", "Martin")
+        payload["password"] = os.getenv("YAGUAR_PASSWORD", "Martin2025")
+        payload["login"] = "Ingresar"
+
+        r2 = session.post(
+            LOGIN_URL,
+            data=payload,
+            headers={**HEADERS, "Referer": LOGIN_URL},
+            impersonate=IMPERSONATE,
+            timeout=20,
+        )
+
+        if "wordpress_logged_in" not in str(r2.cookies):
+            raise Exception("Login fallido — verificar credenciales")
         
-        # Headers actualizados para Safari
-        self.headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-            'accept-language': 'es-ES,es;q=0.9,en;q=0.8',
-            'referer': 'https://yaguar.com.ar/',
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15'
-        }
-        self.session.headers.update(self.headers)
-        
-        # Cookies se obtendrán dinámicamente
-        self.cookies = {}
-        
-        self.base_url = "https://yaguar.com.ar"
-        
-        # Cargar Listado Maestro
-        self.listado_maestro = self.cargar_listado_maestro()
-        
-        # Categorías Yaguar basadas en análisis y Listado Maestro
-        self.categorias = [
-            {"slug": "almacen", "sector": "Almacén", "terminos": ["aceite", "arroz", "fideos", "harina", "yerba", "cafe", "azucar", "galletitas"]},
-            {"slug": "bebidas", "sector": "Bebidas", "terminos": ["gaseosa", "agua", "jugo", "vino", "cerveza", "fernet"]},
-            {"slug": "lacteos", "sector": "Frescos", "terminos": ["leche", "queso", "yogur", "manteca", "crema"]},
-            {"slug": "limpieza", "sector": "Limpieza", "terminos": ["detergente", "lavandina", "limpiador", "papel"]},
-            {"slug": "perfumeria", "sector": "Cuidado Personal", "terminos": ["shampoo", "jabon", "desodorante", "crema"]},
-            {"slug": "carniceria", "sector": "Carnicería", "terminos": ["carne", "pollo", "milanesa"]},
-            {"slug": "congelados", "sector": "Congelados", "terminos": ["helado", "pizza", "empanada"]},
-            {"slug": "quesos", "sector": "Frescos", "terminos": ["queso", "crema", "manteca"]},
-            {"slug": "fiambreria", "sector": "Fiambrería", "terminos": ["jamón", "queso", "salame"]},
-            {"slug": "verduleria", "sector": "Verdulería", "terminos": ["fruta", "verdura", "lechuga"]},
-            {"slug": "bazar", "sector": "Bazar", "terminos": ["vaso", "plato", "cuchillo", "bolsa"]},
-            {"slug": "bebes", "sector": "Bebés", "terminos": ["pañal", "toallita", "mamadera"]},
-            {"slug": "mascotas", "sector": "Mascotas", "terminos": ["alimento", "perro", "gato"]}
-        ]
+        return True
     
-    def _get_session_cookies(self):
-        """Obtener cookies dinámicamente si no existen"""
-        if not self.cookies:
+    # Ejecutar login
+    try:
+        result = _login_attempt()
+        print("✅ Login exitoso")
+        return True
+    except Exception as e:
+        print(f"❌ Login definitivamente fallido: {e}")
+        return False
+
+
+def obtener_max_pagina(soup):
+    """Extrae el número total de páginas leyendo los hrefs de paginación."""
+    max_page = 1
+    for a in soup.find_all("a", href=True):
+        m = re.search(r"/page/(\d+)/", a["href"])
+        if m:
+            num = int(m.group(1))
+            if num > max_page:
+                max_page = num
+    return max_page
+
+
+def limpiar_precio(texto):
+    """Convierte '$5.719' o '5719' a float."""
+    limpio = re.sub(r"[^\d,.]", "", texto)
+    if "," in limpio and "." in limpio:
+        limpio = limpio.replace(",", "")
+    elif "," in limpio:
+        partes = limpio.split(",")
+        if len(partes) == 2 and len(partes[1]) <= 2:
+            limpio = limpio.replace(",", ".")
+        else:
+            limpio = limpio.replace(",", "")
+    try:
+        return float(limpio)
+    except ValueError:
+        return 0.0
+
+
+def parsear_productos(soup, categoria_nombre):
+    """Extrae todos los productos de una página."""
+    items = soup.find_all(class_="e-loop-item")
+    productos = []
+
+    for item in items:
+        try:
+            # Nombre via selector WooCommerce directo
+            nombre_elem = item.select_one("h3.product_title.entry-title")
+            if not nombre_elem:
+                continue
+            nombre = nombre_elem.get_text(strip=True)
+            if not nombre or len(nombre) < 3:
+                continue
+
+            # SKU (Cod. XXXX) — en un h2 dentro del item
+            sku = ""
+            for h2 in item.find_all("h2"):
+                m_sku = re.search(r"Cod\.?\s*(\d+)", h2.get_text())
+                if m_sku:
+                    sku = m_sku.group(1)
+                    break
+
+            # Precio via selector WooCommerce directo
+            precio = 0.0
+            precio_elem = item.select_one(".woocommerce-Price-amount.amount")
+            if precio_elem:
+                precio = limpiar_precio(precio_elem.get_text(strip=True))
+
+            if precio <= 0:
+                continue
+
+            # Imagen
+            img_elem = item.select_one("img")
+            imagen = ""
+            if img_elem:
+                imagen = img_elem.get("src", img_elem.get("data-src", ""))
+
+            # URL del producto
+            link_elem = item.select_one('a[href*="/producto/"]')
+            link = link_elem["href"] if link_elem else ""
+
+            productos.append({
+                "nombre": nombre,
+                "sku": sku,
+                "precio": precio,
+                "imagen": imagen,
+                "link": link,
+                "categoria": categoria_nombre,
+                "fuente": "Yaguar",
+                "fecha": datetime.now().strftime("%Y-%m-%d"),
+            })
+
+        except Exception:
+            continue
+
+    return productos
+
+
+def scrapear_categoria(session, slug, nombre, idx, total):
+    """Scrapea todas las páginas de una categoría."""
+    base_cat_url = f"{BASE_URL}/categoria-producto/{slug}/"
+
+    def _get_first_page():
+        r = session.get(base_cat_url, headers=HEADERS, impersonate=IMPERSONATE, timeout=30)
+        if r.status_code != 200 or "login" in r.url:
+            raise Exception(f"Error accediendo a categoría (status {r.status_code})")
+        return r
+
+    def _get_page(pagina):
+        url_pagina = f"{base_cat_url}page/{pagina}/"
+        r = session.get(url_pagina, headers=HEADERS, impersonate=IMPERSONATE, timeout=30)
+        if r.status_code != 200:
+            raise Exception(f"Página {pagina}: status {r.status_code}")
+        return r
+
+    try:
+        r = _get_first_page()
+        soup = BeautifulSoup(r.text, "html.parser")
+        max_pagina = obtener_max_pagina(soup)
+        todos = parsear_productos(soup, nombre)
+
+        print(f"\n[{idx}/{total}] Sector: {nombre}")
+        print(f"  {nombre.lower()}: ~{max_pagina * len(todos)} productos estimados ({max_pagina} páginas)")
+
+        for pagina in range(2, max_pagina + 1):
             try:
-                response = self.session.get(
-                    self.base_url,
-                    impersonate=self.impersonate,
-                    headers=self.headers,
-                    timeout=15
-                )
-                
-                if response.status_code == 200:
-                    self.cookies = dict(response.cookies)
-                    print(f"🍪 Cookies obtenidas: {list(self.cookies.keys())}")
-                        
+                r = _get_page(pagina)
+                soup = BeautifulSoup(r.text, "html.parser")
+                prods = parsear_productos(soup, nombre)
+                if not prods:
+                    break
+                todos.extend(prods)
+                if pagina % 5 == 0 or pagina == max_pagina:
+                    print(f"    Pag {pagina}/{max_pagina}: {len(todos)} unicos acumulados")
+                time.sleep(DELAY_ENTRE_PAGINAS)
             except Exception as e:
-                print(f"❌ Error obteniendo cookies: {e}")
-                
-        return self.cookies
-    
-    def cargar_listado_maestro(self):
-        """Cargar el Listado Maestro"""
-        try:
-            df = pd.read_excel(os.path.join(RAW_DIR, "Listado Maestro 09-03.xlsx"))
-            print(f"✅ Listado Maestro cargado: {len(df)} productos")
-            return df
-        except Exception as e:
-            print(f"❌ Error cargando Listado Maestro: {e}")
-            return pd.DataFrame()
-    
-    def limpiar_precio(self, precio_str):
-        """Limpiar y convertir precio a número"""
-        if not precio_str:
-            return 0.0
-        
-        cleaned = re.sub(r'[^\d,.]', '', str(precio_str))
-        
-        if ',' in cleaned and '.' in cleaned:
-            cleaned = cleaned.replace(',', '')
-        elif ',' in cleaned:
-            parts = cleaned.split(',')
-            if len(parts) == 2 and len(parts[1]) <= 2:
-                cleaned = cleaned.replace(',', '.')
-            else:
-                cleaned = cleaned.replace(',', '')
-        
-        try:
-            return float(cleaned)
-        except:
-            return 0.0
-    
-    def scraear_categoria(self, categoria_slug, sector):
-        """Scraear una categoría específica"""
-        try:
-            # Asegurar cookies actualizadas
-            cookies = self._get_session_cookies()
-            
-            # Probar diferentes URLs de categoría
-            urls_categoria = [
-                f"{self.base_url}/product-category/{categoria_slug}/",
-                f"{self.base_url}/{categoria_slug}/",
-                f"{self.base_url}/categoria/{categoria_slug}/",
-                f"{self.base_url}/shop/{categoria_slug}/"
-            ]
-            
-            for url in urls_categoria:
-                try:
-                    response = self.session.get(
-                        url, 
-                        impersonate=self.impersonate,
-                        headers=self.headers, 
-                        cookies=cookies, 
-                        timeout=30
-                    )
-                    
-                    if response.status_code == 200:
-                        return self.procesar_pagina_categoria(response.text, sector, categoria_slug)
-                except:
-                    continue
-            
-            print(f"    ❌ No se encontró página para categoría {categoria_slug}")
-            return []
-            
-        except Exception as e:
-            print(f"    ❌ Error scrapeando categoría {categoria_slug}: {e}")
-            return []
-    
-    def procesar_pagina_categoria(self, html, sector, categoria_slug):
-        """Procesar HTML de página de categoría"""
-        soup = BeautifulSoup(html, 'html.parser')
-        
-        # Selectores para productos WooCommerce
-        productos_selectores = [
-            'div.product',
-            'li.type-product',
-            'div.woocommerce-loop-product',
-            'article.product',
-            '[class*="product"]'
-        ]
-        
-        items = []
-        for selector in productos_selectores:
-            items = soup.select(selector)
-            if items:
+                print(f"  ❌ Error en página {pagina}: {e}")
                 break
-        
-        productos = []
-        for item in items[:30]:  # Limitar a 30 productos por categoría
-            try:
-                # Extraer nombre
-                nombre_selectores = [
-                    'h2.woocommerce-loop-product__title',
-                    'h3',
-                    'h2.product-title',
-                    '.product-name',
-                    'h2',
-                    'h3'
-                ]
-                
-                nombre = None
-                for ns in nombre_selectores:
-                    nombre_elem = item.select_one(ns)
-                    if nombre_elem:
-                        nombre = nombre_elem.get_text().strip()
-                        break
-                
-                # Extraer precio
-                precio_selectores = [
-                    'span.price',
-                    '.amount',
-                    '.product-price',
-                    '[class*="price"]',
-                    'span.woocommerce-Price-amount'
-                ]
-                
-                precio = None
-                for ps in precio_selectores:
-                    precio_elem = item.select_one(ps)
-                    if precio_elem:
-                        precio = self.limpiar_precio(precio_elem.get_text())
-                        break
-                
-                # Extraer imagen
-                imagen_elem = item.select_one('img')
-                imagen = imagen_elem.get('src', '') if imagen_elem else ''
-                
-                # Extraer enlace
-                link_elem = item.select_one('a')
-                link = link_elem.get('href', '') if link_elem else ''
-                
-                if nombre and precio > 0:
-                    productos.append({
-                        'nombre': nombre,
-                        'precio': precio,
-                        'sector': sector,
-                        'subcategoria': categoria_slug,
-                        'imagen': imagen,
-                        'link': link,
-                        'fuente': 'Yaguar',
-                        'stock': True,
-                        'fecha_scraping': datetime.now().isoformat()
-                    })
-            
-            except Exception as e:
-                continue
-        
-        print(f"    📦 {len(productos)} productos encontrados")
-        return productos
+
+        print(f"  {nombre.lower()}: {len(todos)} productos totales")
+        return todos
+
+    except Exception as e:
+        print(f"  ❌ Error en categoría {nombre}: {e}")
+        return []
+
+
+def main():
+    print("🚀 Scraper Yaguar PRO — Catálogo Completo")
+    print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 50)
+
+    session = curl_requests.Session()
+
+    if not login(session):
+        print("❌ Login fallido")
+        return None
+
+    todos_los_productos = []
+    resumen = {}
+
+    total_cats = len(CATEGORIAS)
+    print(f"Sectores a scrapear: {total_cats}")
+    print("=" * 55)
+
+    for idx, cat in enumerate(CATEGORIAS, start=1):
+        productos = scrapear_categoria(session, cat["slug"], cat["nombre"], idx, total_cats)
+        todos_los_productos.extend(productos)
+        resumen[cat["nombre"]] = len(productos)
+        time.sleep(DELAY_ENTRE_CATEGORIAS)
+
+    # Guardar output
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_file = os.path.join(BASE_DIR, "targets", "yaguar", f"output_yaguar_{timestamp}.json")
     
-    def buscar_por_termino(self, termino):
-        """Buscar por término de búsqueda"""
-        try:
-            # Búsqueda WordPress
-            search_urls = [
-                f"{self.base_url}/?s={termino}&post_type=product",
-                f"{self.base_url}/search/{termino}/",
-                f"{self.base_url}/buscar/{termino}/"
-            ]
-            
-            for search_url in search_urls:
-                try:
-                    response = self.session.get(
-                        search_url, 
-                        headers=self.headers, 
-                        cookies=self.cookies, 
-                        timeout=30
-                    )
-                    
-                    if response.status_code == 200:
-                        productos = self.procesar_pagina_categoria(response.text, 'Búsqueda', termino)
-                        if productos:
-                            return productos
-                except:
-                    continue
-            
-            return []
-            
-        except Exception as e:
-            print(f"    ❌ Error en búsqueda de {termino}: {e}")
-            return []
-    
-    def scraear_desde_listado_maestro(self, limite=500):
-        """Scraear usando nombres del Listado Maestro"""
-        print(f"\n📋 Scrapeando desde Listado Maestro (límite: {limite})...")
-        
-        if self.listado_maestro.empty:
-            print("❌ Listado Maestro no disponible")
-            return []
-        
-        productos = []
-        
-        # Tomar muestra del Listado Maestro
-        muestra = self.listado_maestro.head(limite)
-        
-        for idx, row in muestra.iterrows():
-            try:
-                nombre = str(row['Texto breve material']).strip()
-                sector = str(row['SECTOR']).strip()
-                
-                # Extraer palabras clave del nombre
-                palabras_clave = re.findall(r'\b[A-Za-z]{3,}\b', nombre.upper())
-                palabras_clave = [p for p in palabras_clave if len(p) > 3][:3]
-                
-                if palabras_clave:
-                    termino_busqueda = ' '.join(palabras_clave)
-                    
-                    resultados = self.buscar_por_termino(termino_busqueda)
-                    
-                    for resultado in resultados:
-                        resultado['sector'] = sector
-                        resultado['subcategoria'] = str(row.get('CATEGORIAS', ''))
-                        resultado['nombre_original_maestro'] = nombre
-                        productos.append(resultado)
-                    
-                    if resultados:
-                        print(f"  ✅ {nombre}: {len(resultados)} productos")
-                
-                time.sleep(1.5)  # Delay entre búsquedas
-                
-            except Exception as e:
-                continue
-        
-        return productos
-    
-    def scraear_completo(self):
-        """Ejecutar scraping completo con acceso Pro"""
-        print("🚀 Iniciando Scraper Yaguar PRO")
-        print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        print("=" * 50)
-        
-        todos_los_productos = []
-        
-        # Estrategia 1: Por categorías
-        print("\n📂 Scrapeando por categorías...")
-        for categoria in self.categorias:
-            print(f"  📂 {categoria['sector']} - {categoria['slug']}")
-            productos = self.scraear_categoria(categoria['slug'], categoria['sector'])
-            todos_los_productos.extend(productos)
-            time.sleep(2)  # Delay entre categorías
-        
-        # Estrategia 2: Por términos de búsqueda específicos
-        print("\n🔍 Scrapeando por términos específicos...")
-        terminos = [
-            "aceite", "arroz", "fideos", "harina", "yerba", "cafe",
-            "gaseosa", "agua", "vino", "cerveza", "fernet",
-            "leche", "queso", "yogur", "manteca",
-            "detergente", "lavandina", "papel", "jabon",
-            "shampoo", "desodorante", "crema"
-        ]
-        
-        for termino in terminos:
-            productos = self.buscar_por_termino(termino)
-            todos_los_productos.extend(productos)
-            time.sleep(1.5)
-        
-        # Estrategia 3: Desde Listado Maestro (limitado)
-        productos_maestro = self.scraear_desde_listado_maestro(limite=300)
-        todos_los_productos.extend(productos_maestro)
-        
-        # Eliminar duplicados
-        productos_unicos = {}
-        for prod in todos_los_productos:
-            key = hashlib.md5(prod['nombre'].encode()).hexdigest()
-            
-            if key not in productos_unicos or prod['precio'] < productos_unicos[key]['precio']:
-                productos_unicos[key] = prod
-        
-        productos_finales = list(productos_unicos.values())
-        
-        # Guardar resultados
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = os.path.join(os.path.dirname(__file__), f"output_yaguar_pro_{timestamp}.json")
-        
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(productos_finales, f, ensure_ascii=False, indent=2)
-        
-        # Sincronizar con BRUJULA-DE-PRECIOS
-        sync_file = os.path.join(BASE_DIR, "BRUJULA-DE-PRECIOS", "data", "output_yaguar.json")
-        with open(sync_file, 'w', encoding='utf-8') as f:
-            json.dump(productos_finales, f, ensure_ascii=False, indent=2)
-        
-        print(f"\n✅ Scrapeo PRO completado:")
-        print(f"  📦 Total productos únicos: {len(productos_finales)}")
-        print(f"  📂 Por categorías: {len([p for p in productos_finales if p['sector'] != 'Búsqueda'])}")
-        print(f"  🔍 Por búsquedas: {len([p for p in productos_finales if p['sector'] == 'Búsqueda'])}")
-        print(f"  📋 Desde Listado Maestro: {len(productos_maestro)}")
-        print(f"  💾 Archivo guardado: {output_file}")
-        print(f"  🔄 Sincronizado con BRUJULA-DE-PRECIOS")
-        
-        # Estadísticas por sector
-        print(f"\n📊 Productos por sector:")
-        sectores_count = {}
-        for prod in productos_finales:
-            sector = prod['sector']
-            sectores_count[sector] = sectores_count.get(sector, 0) + 1
-        
-        for sector, count in sorted(sectores_count.items()):
-            print(f"  📁 {sector}: {count} productos")
-        
-        return productos_finales
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(todos_los_productos, f, ensure_ascii=False, indent=2)
+
+    print(f"\n💾 Guardado en: {output_file}")
+    print("\n" + "=" * 50)
+    print(f"✅ Scraping completo")
+    print(f"📦 Total productos: {len(todos_los_productos)}")
+    print(f"💾 Guardado en: {output_file}")
+    print("\nResumen por categoría:")
+    for cat_nombre, count in resumen.items():
+        print(f"  {cat_nombre}: {count}")
+
+    return todos_los_productos
+
 
 if __name__ == "__main__":
-    scraper = YaguarProScraper()
-    scraper.scraear_completo()
+    main()

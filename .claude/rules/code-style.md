@@ -1,0 +1,26 @@
+# Rules: Code Style
+
+## TypeScript
+- Nunca `any` explícito — usar tipos concretos o `unknown`
+- Preferir `satisfies` sobre `as` para type assertions
+- Imports de JSON: única excepción para `any` implícito
+- Nombrar: `camelCase` variables/funciones, `PascalCase` componentes/tipos, `UPPER_SNAKE` constantes
+- Siempre `const` salvo que haya razón para `let`
+
+## Python
+- `snake_case` para todo (variables, funciones, archivos)
+- f-strings para interpolación — no `%` ni `.format()`
+- Type hints en funciones públicas: `def scrape(session: requests.Session) -> list[dict]`
+- Nunca `print()` mezclado con lógica — output al final o logging
+- Un solo `return` al final de funciones largas — evitar returns intermedios
+
+## Comentarios
+- Por defecto: cero comentarios
+- Solo agregar cuando el WHY no es obvio: restricción oculta, workaround de bug específico, invariante no obvio
+- Nunca comentar WHAT hace el código — los nombres ya lo dicen
+
+## General
+- No backwards-compatibility hacks (no `_unused`, no re-exports, no `// removed`)
+- No feature flags ni shims cuando se puede cambiar directo el código
+- No manejo de errores para escenarios que no pueden pasar
+- Funcional > perfecto. Si corre, es suficiente hasta que no lo sea.
